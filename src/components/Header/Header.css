@@ -1,0 +1,77 @@
+.Header{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100vh;
+    min-width: 90px;
+    background: rgba(255, 102, 0, 0.932);
+    border-right: 2px solid rgb(255, 255, 255);
+    box-shadow: 2px 0px 7px 2px rgba(0, 0, 0, 0.664);
+    transition: 0.2s ease 0.1s;
+}
+.Header--nav{
+    height: 100%;
+}
+
+.Header--Close{
+    transform: translateX(-101%);
+    transition: 0.1s ease 0s;
+}
+
+
+.Header ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* justify-content: space-around; */
+}
+
+.Header--arrow{
+    width: 1px;
+    height: 100%;
+}
+
+.Header--arrow__arrow{
+    width: 30px;
+    height: 50px;
+    background: rgba(187, 90, 0, 0.836);
+    position: absolute;
+    top: calc(50% - 28px);
+    border-top-right-radius: 10px;
+    opacity: 1;
+    cursor: pointer;
+    z-index: -10;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: left;
+    border-right: 1px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    border-top: 1px solid rgb(255, 255, 255);
+    box-shadow: 2px 0px 6px 2px rgba(0, 0, 0, 0.664);
+    transition: 0.3s ease 0.1s;
+    right: -30px;
+}
+
+.Header--arrow__arrow i{
+    color: white;
+}
+
+
+.Header--arrow__Close{
+    opacity: 0;
+    transform: scale(0,1);
+    transition: 0.2s ease 0.1s;
+}
+
+.Header ul li {
+    list-style: none;
+    width: 100%;
+}

@@ -1,0 +1,195 @@
+.Register{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.Register--bck{
+    width: 100%;
+    filter: blur(25px);
+    height: 100%;
+    background: rgb(90, 90, 90) url("../../images/register-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.Register--Container{
+    box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.699);
+    position: absolute;
+    width: 800px;
+    top: 3rem;
+    margin: 10px;
+    left: calc(50% - 400px);
+    background-color: white;
+    display: flex;
+}
+
+.Register--Info{
+    width: 300px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1rem 1rem 1rem 3rem;
+    background: linear-gradient(to bottom, rgba(255, 166, 0, 0.886), rgba(255, 166, 0, 0.886)), url("../../images/register-info.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    text-align: left;
+}
+
+.Register--Info h1{
+margin: 4rem 0 3rem 0;
+}
+
+.Register--Info p{
+    margin: 1rem 0 1rem 0;
+    width: 200px;
+}
+
+.Register--error__msg{
+    padding: 5px;
+    font-size: 15px;
+    background-color: rgba(255, 0, 0, 0.774);
+    border: 1px solid rgb(117, 0, 0);
+    box-shadow: 0px 1px 2px 1px rgba(163, 0, 0, 0.733);
+    font-weight: lighter;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    font-family:'Montserrat', sans-serif;
+    width: 100%;
+    margin: 5px;
+}
+
+.Register--Body{
+    width: 100%;
+    padding: 1rem;
+    margin: 2rem;
+}
+.Register--Body form{
+    font-family: 'Mukta', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+}
+
+.Register--Body form .form--control{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem auto;
+}
+
+.Register--Body form .form--control label{
+text-transform: uppercase;
+font-weight: bold;
+color: rgb(80, 79, 79);
+font-family: 'Oswald', sans-serif;
+}
+.Register--Body form .form--control input {
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(160, 160, 160);
+    font-family: 'Montserrat', sans-serif;
+    color: black;    
+}
+
+.Register--Body form .form--control input:focus{
+    outline: none;
+    border-color: black;
+}
+
+.Register--Link{
+    text-align: left;
+    margin: 1rem 2rem;
+}
+
+.Register--Link a{
+    text-decoration: none;
+    color: green;
+    border-bottom: 1px solid transparent;
+}
+
+.Register--Link a:hover{
+    border-color: green;
+}
+
+.Register--Body form .form--control button{
+    padding: 5px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(1, 126, 94);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    transition: 0.2s ease 0s;
+}
+
+.Register--Body form .form--control button:focus{
+    outline: none;
+}
+.Register--Body form .form--control button:hover{
+    background-color: rgb(0, 73, 69);
+}
+
+.Register--Body form .form--control button:disabled{
+    opacity: 0.7;
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+
+@media(max-width:1000px){
+.Register--bck{
+    min-height: 1000px;
+}
+}
+
+
+@media(max-width:870px){
+    .Register--Container{
+        width: 90%;
+        left: 5%;
+    }
+    .Register--Info{
+        width: 35%;
+        padding: 1rem;
+    }
+    .Register--Info p{
+        width: 90%;
+    }
+    .Register--Body{
+        width: 65%;
+    }
+}
+
+
+@media(max-width:700px){
+    .Register--Container{
+        flex-direction: column;
+        width: 90%;
+        left: 2.5%;
+    }
+    .Register--Info__Body{
+        width: 100%;
+    }
+
+    .Register--Info{
+        width: 100%;
+    }
+
+    .Register--Body{
+        padding: 0;
+        width: 100%;
+        margin: 0;
+    }
+}
