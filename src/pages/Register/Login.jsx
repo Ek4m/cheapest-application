@@ -47,7 +47,6 @@ const Login = (props) => {
             email:email.trim(),
             password:password.trim(),
         }
-        console.log(body);
        let isValid = true;
             const emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
               if(!body.email || !emailRegEx.test(body.email)){
@@ -58,18 +57,23 @@ const Login = (props) => {
                   setPasswordError('Password provided must be min. 6 characters');
                   isValid = false;
               }
-              console.log(isValid);
               if(isValid){
-                  console.log('Bashdiyir')
                 instance.post('/auth/login', body)
-                .then(dov => {
-                    console.log('SUCCESS', dov.data);
+                .then(doc => {
+                    instance.get('/auth/myprofile', {
+                        headers:{
+                            'X-Auth-Token': doc.data.token
+                        }
+                    }).then(userData => {
+                        document.cookie = 'authToken=' + doc.data.token + '; ';
+                        props.getUser(userData.data);
+                    }).catch(err => {
+                        console.log(err);
+                    })
                     props.history.push('/')
                 })
                 .catch((err) => {
-                    console.log('nese pox var')
                     setServerError('Something went wrong please try again')
-                    console.log(err.message)
                     setSubmitted(false);
                     setTimeout(() => {
                         setServerError('');
@@ -139,7 +143,7 @@ return {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login:(body) => dispatch(userActions.loginUser(body))
+        getUser:(body) => dispatch(userActions.loginUser(body))
     }
 }
 

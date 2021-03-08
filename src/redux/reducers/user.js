@@ -1,5 +1,5 @@
 export const userReducer = (state = false, action) => {
-    switch(action.code){
+    switch(action.type){
         case "LOGIN":
             return action.user
         default:

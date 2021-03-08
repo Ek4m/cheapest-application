@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import HeaderLink from './HeaderLink';
 import './Header.css';
 import { connect } from 'react-redux';
@@ -65,6 +65,7 @@ class Header extends React.PureComponent {
             >
             <i className="fas fa-user"></i>
             </HeaderLink> : null}
+         {this.props.user ? null : <Fragment>
             <HeaderLink path="/register"
             title="Sign Up"
             >
@@ -75,6 +76,7 @@ class Header extends React.PureComponent {
             >
             <i className="fas fa-sign-in-alt"></i>
             </HeaderLink>
+             </Fragment>}
             </ul>
            </div>
            <div className="Header--arrow">
