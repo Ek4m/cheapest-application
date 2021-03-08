@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { instance } from '../../axios';
+import * as userActions from '../../redux/actions/user'
 import RegSpinner from '../../components/RegisterSpinner/RegSpinner';
 import './Register.css'
+import { connect } from 'react-redux';
 
-const Login = () => {
+const Register = (props) => {
 
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
@@ -22,7 +24,7 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState("");
     const [rPasswordError, setRPasswordError] = useState("");
     const [usernameError, setUsernameError] = useState("");
-    const [serverError, setServerError] = useState("");
+    const [serverError, setServerError] = useState([]);
 
     useEffect(() => {
         emailInput.current.focus()
@@ -54,6 +56,7 @@ const Login = () => {
     }
 
     const signInHandler = (e) => {
+        setServerError([])
         e.preventDefault()
        if(!isSubmitted){
            setSubmitted(true);
@@ -63,7 +66,6 @@ const Login = () => {
             password2:rPassword.trim(),
             username:username.trim()
         }
-        console.log(body);
        let isValid = true;
             const emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
               if(!body.email || !emailRegEx.test(body.email)){
@@ -86,19 +88,29 @@ const Login = () => {
               if(isValid){
                   console.log('Bashdiyir')
                 instance.post('/auth/register', body)
-                .then(dov => {
-                    console.log('SUCCESS', dov.data);
+                .then(doc => {
+
+
+                    instance.get('/auth/myprofile', {
+                        headers:{
+                            'X-Auth-Token': doc.data.token
+                        }
+                    }).then(userData => {
+                        document.cookie = 'authToken=' + doc.data.token + '; ';
+                        props.getUser(userData.data);
+                        props.history.push('/')
+
+                    }).catch(err => {
+                        console.log('FAILED', err)
+                        props.getUser('')
+                    })
+                    console.log('SUCCESS', doc.data);
                     setSubmitted(false);
                 })
                 .catch((err) => {
                     setSubmitted(false);
-                    console.log('nese pox var')
-                    console.log(err.message)
-                    setServerError('Something went wrong please try again');
-                    console.log(err.errors)
-                    setTimeout(() => {
-                        setServerError('');
-                    },2000)
+                    console.log('FAILED', err)
+                    setServerError([...err.response.data.errors])
                 })
               }else{
                   setSubmitted(false);
@@ -124,7 +136,11 @@ const Login = () => {
             </div>
             <div className="Register--Body">
         <form action="#" onSubmit={(e) => signInHandler(e)}>
-            {serverError ? <div className="Register--error__msg">{serverError}</div> : null}
+        {serverError.length > 0 ? 
+        serverError.map((err, index) => (
+            <div className="Register--error__msg" key={err.msg + Date.now() + index}>{err.msg}</div>
+        ))
+    : null}
         <div className="form--control">
         <label htmlFor="email" >email:</label>
         <input type="email"
@@ -178,5 +194,16 @@ const Login = () => {
             </div>
     )
 }
-
-export default Login
+const mapStateToProps = (state) => {
+    return {
+        user:state.user
+    }
+    }
+    
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            getUser:(body) => dispatch(userActions.loginUser(body))
+        }
+    }
+    
+    export default connect(mapStateToProps, mapDispatchToProps)(Register)

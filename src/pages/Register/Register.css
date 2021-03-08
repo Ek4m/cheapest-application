@@ -24,6 +24,21 @@
     left: calc(50% - 400px);
     background-color: white;
     display: flex;
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: animateRegister 0.3s ease 0.1s forwards;
+}
+
+
+@keyframes animateRegister {
+    0%{
+        transform: translateY(-100%);
+    opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+    opacity: 1;
+    }
 }
 
 .Register--Info{

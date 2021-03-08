@@ -17,7 +17,7 @@ const Login = (props) => {
     const [isSubmitted, setSubmitted] = useState(false);
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [serverError, setServerError] = useState("");
+    const [serverError, setServerError] = useState([]);
 
     useEffect(() => {
         emailInput.current.focus()
@@ -41,6 +41,7 @@ const Login = (props) => {
 
     const logIn = (e) => {
         e.preventDefault()
+        setServerError([])
         if(!isSubmitted){
             setSubmitted(true);
         let body = {
@@ -67,23 +68,23 @@ const Login = (props) => {
                     }).then(userData => {
                         document.cookie = 'authToken=' + doc.data.token + '; ';
                         props.getUser(userData.data);
+                        props.history.push('/')
+
                     }).catch(err => {
-                        console.log(err);
+                        props.getUser('')
                     })
-                    props.history.push('/')
                 })
                 .catch((err) => {
-                    setServerError('Something went wrong please try again')
+                    setServerError([...err.response.data.errors])
                     setSubmitted(false);
-                    setTimeout(() => {
-                        setServerError('');
-                    },2000)
                 })
               }else{
                   setSubmitted(false);
               }
         }
     }
+
+    console.log(serverError)
     return (
         <div className='Register'>
         <div className="Register--bck"></div>
@@ -98,7 +99,11 @@ const Login = (props) => {
         </div>
         <div className="Register--Body">
     <form action="#" onSubmit={e => logIn(e)}>
-    {serverError ? <div className="Register--error__msg">{serverError}</div> : null}
+    {serverError.length > 0 ? 
+        serverError.map((err, index) => (
+            <div className="Register--error__msg" key={err.msg + Date.now() + index}>{err.msg}</div>
+        ))
+    : null}
     <div className="form--control">
     <label htmlFor="email">email:</label>
     <input type="email" 

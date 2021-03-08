@@ -8,6 +8,7 @@ import PageFallback from './components/PageFallback/PageFallback'
 import { connect } from 'react-redux';
 
 const About = React.lazy(() => import('./pages/About/About'));
+const Profile = React.lazy(() => import('./pages/Profile/Profile'));
 const Login = React.lazy(() => import('./pages/Register/Login'));
 const Index = React.lazy(() => import( './pages/Index/Index'));
 const Register = React.lazy(() => import('./pages/Register/Register'));
@@ -25,23 +26,31 @@ class App extends Component {
       this.props.getUser(doc.data)
     }).catch(err => {
       console.log(err)
+      this.props.getUser('')
     })
   }
 
   render() {
-    return (
-        <div className="App">
-        <Header />
-         <Suspense fallback={<PageFallback />}>
-         <Switch>
-          <Route path='/register/login' component={Login} />
-          <Route path='/register' component={Register}/>
-          <Route path='/about' component={About}/>
-            <Route path="/" component={Index} />
-          </Switch>
-         </Suspense>
-      </div>
-    );
+    switch(this.props.user){
+      case false:
+        return <PageFallback />
+        default :
+        return (
+          <div className="App">
+          <Header />
+           <Suspense fallback={<PageFallback />}>
+           <Switch>
+            <Route path='/register/login' component={Login} />
+            <Route path='/register' component={Register}/>
+            <Route path='/about' component={About}/>
+            <Route path='/profile' component={Profile}/>
+              <Route path="/" component={Index} />
+            </Switch>
+           </Suspense>
+        </div>
+      );
+    }
+    
   }
 }
 
