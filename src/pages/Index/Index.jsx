@@ -26,7 +26,7 @@ export class Index extends Component {
          </div>
 
         </div>
-        <img src={require("../../images/mans.png")} alt="header-image"/>
+        <img src={require("../../images/mans.png")} alt="header"/>
         <div className="Index--Header--abs__triangle--bottom"></div>
             </div>
             </div>

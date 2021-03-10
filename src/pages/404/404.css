@@ -1,0 +1,39 @@
+.PageNotFound{
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(95, 255, 207) url("../../images/404-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.PageNotFound img{
+    max-width: 400px;
+    width: 80%;
+}
+
+.PageNotFound h1{
+margin: 1rem auto;
+text-transform: uppercase;
+}
+
+.PageNotFound--Nav{
+    margin-top: 10px;
+}
+.PageNotFound--Nav a{
+    text-decoration: none;
+    color: white;
+    background-color: orangered;
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.2s ease 0s;
+}
+
+.PageNotFound--Nav a:hover{
+    background-color: rgb(172, 46, 1);
+}

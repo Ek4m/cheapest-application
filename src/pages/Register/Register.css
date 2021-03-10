@@ -67,6 +67,7 @@ margin: 4rem 0 3rem 0;
 
 .Register--error__msg{
     padding: 5px;
+    transition: 0.2s ease 0s;
     font-size: 15px;
     background-color: rgba(255, 0, 0, 0.774);
     border: 1px solid rgb(117, 0, 0);
@@ -161,6 +162,20 @@ font-family: 'Oswald', sans-serif;
     background-color: grey;
     cursor: not-allowed;
 }
+
+.RegisterError-enter{
+    transform: scale(0,0);
+}
+.RegisterError-enter-active{
+    transform: scale(1,1);
+}
+.RegisterError-exit{
+    transform: scale(1,1);
+}
+.RegisterError-exit-active{
+    transform: scale(0,0);
+}
+
 
 
 @media(max-width:1000px){

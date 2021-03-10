@@ -7,15 +7,15 @@ export const instance = axios.create({
 })
 
 export const findToken = () => {
-    let cookieVal;
+    let cookieVal = '';
 
-if(document.cookie){
-    cookieVal = document.cookie
+if(document.cookie.length > 0){
+   let cookiem = document.cookie
   .split('; ')
-  .find(row => row.startsWith('authToken='))
-  .split('=')[1];
-}else{
-    cookieVal = '';
+  .find(row => row.startsWith('authToken='));
+  if(cookiem){
+      cookieVal = cookiem.split('=')[1];
+  }
 }
 return cookieVal;
 }

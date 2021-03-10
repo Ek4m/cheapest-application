@@ -1,0 +1,19 @@
+.RegisterFallback{
+    width: 100%;
+    min-height: 100vh;
+    color: rgb(32, 32, 32);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.RegisterFallback p {
+    margin: 1rem auto;
+}
+
+.RegisterFallback img{
+    max-width: 400px;
+    width: 90%;
+}

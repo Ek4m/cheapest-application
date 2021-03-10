@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import * as userActions from '../../redux/actions/user';
 import { instance } from '../../axios';
 
@@ -68,14 +68,25 @@ const Login = (props) => {
                     }).then(userData => {
                         document.cookie = 'authToken=' + doc.data.token + '; ';
                         props.getUser(userData.data);
-                        props.history.push('/')
-
+                        props.history.push('/');
                     }).catch(err => {
-                        props.getUser('')
+                        console.log(err)
+                        if(err.response){
+                            let errorArr = err.response.data.errors.map(err => err.msg);
+                                setServerError([...errorArr])
+                            }else if(err.message){
+                            setServerError([err.message])
+                        }
                     })
                 })
                 .catch((err) => {
-                    setServerError([...err.response.data.errors])
+                    console.log(err)
+                    if(err.response){
+                        let errorArr = err.response.data.errors.map(err => err.msg);
+                            setServerError([...errorArr])
+                        }else if(err.message){
+                        setServerError([err.message])
+                    }
                     setSubmitted(false);
                 })
               }else{
@@ -83,8 +94,14 @@ const Login = (props) => {
               }
         }
     }
-
-    console.log(serverError)
+let errorContent = null;
+if(serverError.length > 0){
+errorContent =    serverError.map((err, index) => (
+               <div className="Register--error__msg"
+               key={err + Date.now() + index}
+               >{err}</div>
+        ))
+}
     return (
         <div className='Register'>
         <div className="Register--bck"></div>
@@ -99,11 +116,7 @@ const Login = (props) => {
         </div>
         <div className="Register--Body">
     <form action="#" onSubmit={e => logIn(e)}>
-    {serverError.length > 0 ? 
-        serverError.map((err, index) => (
-            <div className="Register--error__msg" key={err.msg + Date.now() + index}>{err.msg}</div>
-        ))
-    : null}
+    {errorContent}
     <div className="form--control">
     <label htmlFor="email">email:</label>
     <input type="email" 
@@ -152,4 +165,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(withRouter(Login)))

@@ -84,12 +84,9 @@ const Register = (props) => {
                   setUsernameError('Username provided must be min. 5 characters');
                   isValid = false;
               }
-              console.log(isValid);
               if(isValid){
-                  console.log('Bashdiyir')
                 instance.post('/auth/register', body)
                 .then(doc => {
-
 
                     instance.get('/auth/myprofile', {
                         headers:{
@@ -101,16 +98,15 @@ const Register = (props) => {
                         props.history.push('/')
 
                     }).catch(err => {
-                        console.log('FAILED', err)
                         props.getUser('')
                     })
-                    console.log('SUCCESS', doc.data);
                     setSubmitted(false);
                 })
                 .catch((err) => {
                     setSubmitted(false);
-                    console.log('FAILED', err)
-                    setServerError([...err.response.data.errors])
+                    if(err.response){
+                        setServerError([...err.response.data.errors])
+                    }
                 })
               }else{
                   setSubmitted(false);
@@ -122,6 +118,14 @@ const Register = (props) => {
         document.title = 'Create your "Cheapest App" profile in seconds!!!';
     },[])
 
+    let errorContent = null;
+if(serverError.length > 0){
+errorContent =    serverError.map((err, index) => (
+               <div className="Register--error__msg"
+               key={err + Date.now() + index}
+               >{err}</div>
+        ))
+}
     return (
         <div className='Register'>
             <div className="Register--bck"></div>
@@ -136,11 +140,7 @@ const Register = (props) => {
             </div>
             <div className="Register--Body">
         <form action="#" onSubmit={(e) => signInHandler(e)}>
-        {serverError.length > 0 ? 
-        serverError.map((err, index) => (
-            <div className="Register--error__msg" key={err.msg + Date.now() + index}>{err.msg}</div>
-        ))
-    : null}
+        {errorContent}
         <div className="form--control">
         <label htmlFor="email" >email:</label>
         <input type="email"
