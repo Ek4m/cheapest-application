@@ -1,110 +1,239 @@
 .Profile{
     width: 100%;
-    min-height: 100vh;
-    background:rgb(216, 219, 13);
+    min-height: 100vh;   
 }
 
-.Profile--Header__Content{
-    transition: 0.1s ease 0s;
-    transform-origin: top;
-}
-
-.Profile--Header__Menu-enter{
-transform: scaleY(0);
-}
-
-.Profile--Header__Menu-enter-active{
-transform: scaleY(1);
-}
-.Profile--Header__Menu-exit{
-transform: scaleY(1);
-}
-
-.Profile--Header__Menu-exit-active{
-    transform: scaleY(0);
-}
-
-.Profile--Header{
+.Profile--bck{
+    background: url("../../images/profile-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     position: fixed;
-    font-family: 'Montserrat', sans-serif;
-    right: 10px;
-    top: 0;
-}
-
-.Profile--Header__Title{
-    cursor: pointer;
-    background-color: rgb(180, 81, 0);
-    padding: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    transition: 0.2s ease 0s;
-    display: flex;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.651);
-    align-items: center;
-    width: max-content;
-}
-
-
-.Profile--Header__Title:hover{
-    background-color: rgb(255, 113, 19);
-}
-
-.Profile--Header__Title:active{
-    background-color: rgb(155, 49, 0);
-
-}
-
-.Profile--Header__Title p{
-    color: white;
-    margin: 5px;
-}
-
-.Profile--Header__Title i {
-    color: white;
-    font-size: 1.3rem;
-}
-
-.Profile--Header__Container{
     width: 100%;
-    height: 1px;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: blur(65px);
+    animation: animateProfileBck 0.5s ease 0.1s forwards;
+}
+
+
+
+@keyframes animateProfileBck{
+    0%{
+        opacity: 0;
+        filter: blur(65px);
+    }
+    100%{
+        opacity: 1;
+        filter: blur(15px);
+    }
+}
+
+.Profile--Container{
+    width: 700px;
+    background-color: white;    
+    position: fixed;
+    left: calc(50% - 350px);
+    overflow: hidden;
+    border: 1px solid rgb(58, 58, 58);
+    font-family: 'Montserrat', sans-serif;
+    top: 3rem;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.63), 6px 6px 0px 3px rgba(255, 255, 255, 0.459);
+    opacity: 0;
+    transform:translateX(100%);
+    animation: animateProfileContainer 0.2s ease 0.7s forwards;
+}
+
+@keyframes animateProfileContainer{
+    0%{
+        opacity: 0;
+        transform:translateX(-100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.Profile--Menu{
+    margin-right: 2rem;
     position: relative;
 }
 
-.Profile--Header__Content{
+.Profile--Menu__Arrow{
+    padding: 4px;
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s ease 0s;
+}
+
+.Profile--Menu__Arrow:hover{
+    background-color: rgb(192, 192, 192);
+}
+
+.Profile--Menu__Arrow:active{
+    background-color: rgb(83, 83, 83);
+}
+
+.Profile--Menu__Arrow i{
+    color: rgb(51, 51, 51);
+    font-size: 1.4rem;
+}
+
+.Profile--Menu__Content{
+    transform-origin: top;
+    transition: 0.2s ease 0s;
     position: absolute;
-    background-color: rgb(212, 103, 0);
-    padding: 5px;
-    top: 10px;
-    right:0;
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.548);
-}
-
-.Profile--Header__Content ul li{
-    width: max-content;
-    min-width: 200px;
+    top: calc(100% + 5px);
+    background-color: white;
     display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    align-items: flex-start;
+    min-width: 140px;
+    right: 0;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.596);
+    padding: 6px;
+}
+
+.Profile--Menu__Content a,
+.Profile--Menu__Content button{
+    background: none;
+    border: none;
+    color: grey;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.Profile--Menu__Content a:hover,
+.Profile--Menu__Content button:hover{
+    color: black;
+}
+
+.Profile--Menu__Content a:focus,
+.Profile--Menu__Content button:focus{
+    outline: none;
+}
+
+.profileMenu-enter{
+transform: scale(1,0) translateY(-100%);
+opacity: 0;
+}
+
+.profileMenu-enter-active{
+transform: scale(1,1) translateY(0);
+opacity: 1;
+}
+
+.profileMenu-exit{
+transform: scale(1,1) translateY(0);
+opacity: 1;
+}
+
+.profileMenu-exit-active{
+transform: scale(1,0) translateY(-100%);
+opacity: 0;
+}
+
+.Profile--Info__Head{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-height: 150px;
+    padding: 10px 10px 20px 20px;
+    background: linear-gradient(to bottom, rgba(0, 11, 112, 0.833), rgba(0, 11, 112, 0.833)), url("../../images/profile-head.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.Profile--Info__Head h2{
+    font-size: 2rem;
+    color: white;
+}
+
+.Profile--control{
+    width: max-content;
+    display: flex;
+    width: 100%;
     justify-content: flex-start;
-    margin: 5px 0;
+    margin: 3rem 10px;
+    align-items: center;
 }
 
-.Profile--Header__Content ul li div,
-.Profile--Header__Content ul li a{
-border: none;
-background: none;
-font-weight: bold;
-font-family: 'Montserrat', sans-serif;
-cursor: pointer;
-text-decoration: none;
-color: rgb(255, 255, 255);
+.Profile--control h4{
+    text-transform: uppercase;
 }
 
-.Profile--Header__Content ul li i{
-    margin-right: 5px;
-    font-size: 1.1rem;
-    color: rgb(255, 255, 255);
+.Profile--control h4:nth-child(1){
+    font-weight: bold;
+    margin: 5px 1rem;
+}
+.Profile--control h4:nth-child(2){
+    font-weight: lighter;
 }
 
-.Profile--Header__Content ul li div:hover,
-.Profile--Header__Content ul li a:hover{
-    color: orange;
+@media(max-width:866px){
+    .Profile--Container{
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}
+
+@media(max-width:660px){
+    .Profile--Container{
+        width: 90%;
+        left: 5%;
+    }
+    .Profile--control{
+        flex-direction: column;
+        width: max-content;
+        align-items: flex-start;
+    }
+
+    .Profile--control h4:nth-child(1){
+        margin: initial;
+    }
+}
+
+@media(max-width:460px){
+    .Profile--Container{
+        width: 95%;
+        left: 2.5%;
+    }
+
+    .Profile--Info__Head h2{
+        font-size: 1.5rem;
+    }
+    .Profile--control h4{
+        font-size: 0.7rem;
+    }
+
+    .Profile--Info__Head{
+        padding: 5px 5px 10px 5px;
+    }
+
+    .Profile--Menu{
+        margin-right: 5px;
+    }
+    .Profile--Menu__Content{
+        min-width: 100px;
+    }
+
+    .Profile--Menu__Content a,
+    .Profile--Menu__Content button{
+        font-size: 1rem;
+    }
+
+    .Profile--Menu__Arrow i{
+        font-size: 1rem;
+    }
 }

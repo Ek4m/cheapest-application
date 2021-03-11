@@ -7,11 +7,12 @@ import Header from './components/Header/Header';
 import PageFallback from './components/PageFallback/PageFallback'
 import { connect } from 'react-redux';
 import PageBoundary from './ErrorBoundary/PageErrors/PageBoundary';
-import Index from './pages/Index/Index';
+// import Index from './pages/Index/Index';
 import PageNotFound from './pages/404/404';
 const About = React.lazy(() => import('./pages/About/About'));
 const Profile = React.lazy(() => import('./pages/Profile/Profile'));
 const Login = React.lazy(() => import('./pages/Register/Login'));
+const Index = React.lazy(() => import( './pages/Index/Index'));
 const Register = React.lazy(() => import('./pages/Register/Register'));
 
 class App extends Component {

@@ -133,7 +133,7 @@ errorContent =    serverError.map((err, index) => (
     <input 
     required
     type="password" 
-    name="" ref={passwordInput} 
+    ref={passwordInput} 
     id="password"
     onChange={e => setPasswordHandler(e)}
     />

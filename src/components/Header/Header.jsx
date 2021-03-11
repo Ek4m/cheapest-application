@@ -4,18 +4,20 @@ import './Header.css';
 import { connect } from 'react-redux';
 class Header extends React.PureComponent {
     //state
- state = {
-     isOpen:false
- }
- componentDidMount(){
-    window.addEventListener('click', () => {
-        if(this.state.isOpen){
-            this.setState({
-                isOpen:false
-            })
-        }
-    })
- }
+    state = {
+        isOpen:false
+    }
+    componentDidMount(){
+        window.addEventListener('click', () => {
+            if(this.state.isOpen){
+                this.setState({
+                    isOpen:false
+                })
+            }
+        })
+    }
+
+
 
     //methods
     setOpenHandler = (e) => {
@@ -26,6 +28,7 @@ class Header extends React.PureComponent {
         })
      }
     }
+
     setCloseHandler = (e) => {
         e.stopPropagation()
         if(this.state.isOpen){
@@ -34,8 +37,16 @@ class Header extends React.PureComponent {
             })
         }
     }
+
     clickHeaderHandler = (e) => {
         e.stopPropagation();
+    }
+
+    clickLinkHandler = (e) => {
+        e.stopPropagation();
+        this.setState({
+            isOpen:false
+        })
     }
 
     //render
@@ -51,27 +62,32 @@ class Header extends React.PureComponent {
            <div className="Header--nav">
            <ul>
             <HeaderLink path="/"
+            clicked={this.clickLinkHandler}
             title="Home"
             >
                 <i className="fas fa-home"></i>
             </HeaderLink>
             <HeaderLink path="/about"
+            clicked={this.clickLinkHandler}
             title="About"
             >
             <i className="fas fa-info-circle"></i>
             </HeaderLink>
           {this.props.user ?   <HeaderLink path="/profile"
+          clicked={this.clickLinkHandler}
             title="Profile"
             >
             <i className="fas fa-user"></i>
             </HeaderLink> : null}
          {this.props.user ? null : <Fragment>
             <HeaderLink path="/register"
+            clicked={this.clickLinkHandler}
             title="Sign Up"
             >
             <i className="fas fa-user-plus"></i>
             </HeaderLink>
             <HeaderLink path="/register/login"
+            clicked={this.clickLinkHandler}
             title="Login"
             >
             <i className="fas fa-sign-in-alt"></i>

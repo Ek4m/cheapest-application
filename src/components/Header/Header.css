@@ -7,7 +7,7 @@
     z-index: 10;
     height: 100vh;
     min-width: 90px;
-    background: rgba(255, 102, 0, 0.932);
+    background: rgba(194, 106, 48, 0.932);
     border-right: 2px solid rgb(255, 255, 255);
     box-shadow: 2px 0px 7px 2px rgba(0, 0, 0, 0.664);
     transition: 0.2s ease 0.1s;

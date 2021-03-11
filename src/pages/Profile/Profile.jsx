@@ -1,20 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import withAuth from '../../hoc/withAuth';
 import * as userActions from '../../redux/actions/user';
 import './Profile.css';
 
 class Profile extends React.PureComponent {
-
     state = {
-        isHeaderOpen:false
-    }
-    eventWindow = () => {
-        this.setState({
-            isHeaderOpen:false
-        })
+        isMenuOpen:false
     }
 
     componentDidMount(){
@@ -22,58 +16,69 @@ class Profile extends React.PureComponent {
         document.title = `Cheapest App!:: ${this.props.user.username}`;
         window.addEventListener('click', this.eventWindow)
      }
+
     componentWillUnmount(){
         window.removeEventListener('click', this.eventWindow)
     }
 
+    eventWindow = (e) => {
+        if(this.state.isMenuOpen){
+            this.setState({
+                isMenuOpen:false
+            })
+        }
+    }
 
     onClickHandler = (e) => {
         e.stopPropagation();
         this.setState({
-            isHeaderOpen:!this.state.isHeaderOpen
+            isMenuOpen:!this.state.isMenuOpen
         })
     }
 
-    onLogoutHandler = () => {
+    onLogoutHandler = (e) => {
         document.cookie = 'authToken=;expires=Thu,01 Jan 1970 00:00:00 UTC; path=/;';
         this.props.getUser("");
         this.props.history.push("/")
     }
 
+
     render(){
         return (
             <div className="Profile">
-             <div className="Profile--Header">
-            <div className="Profile--Header__Title" 
-            onClick={e => this.onClickHandler(e)}>
-                <i className="fas fa-cogs"></i>
-                <p>Settings</p>
-            </div>
-              <div className="Profile--Header__Container">
-              <CSSTransition 
-                timeout={200}
-                mountOnEnter
-                unmountOnExit
-                classNames="Profile--Header__Menu"
-                in={this.state.isHeaderOpen}
-                >
-            <div className="Profile--Header__Content">
-            <ul>
-            <li>
-                <i className="fas fa-user-edit"></i>
-                <Link to="/profile/update">Update Info</Link></li>
-            <li>
-                <i className="fas fa-sign-out-alt"></i>
-                <div onClick={this.onLogoutHandler}>Logout</div>
-                </li>
-            </ul>
+             <div className="Profile--bck"></div>
+             <div className="Profile--Container">
+                <div className="Profile--Info__Head">
+                <h2>{this.props.user.username}'s Profile</h2>
+                <div className="Profile--Menu">
+                    <div 
+                    className="Profile--Menu__Arrow"
+                    onClick={e => this.onClickHandler(e)}
+                    ><i className="fas fa-chevron-down"></i></div>
+                    <CSSTransition
+                    in={this.state.isMenuOpen}
+                    timeout={200}
+                    unmountOnExit
+                    mountOnEnter
+                    classNames="profileMenu"
+                    >
+<div className="Profile--Menu__Content" onClick={(e) => e.stopPropagation()}>
+    <Link to="/">Update</Link>
+    <button onClick={(e) => this.onLogoutHandler(e)}>Logout</button>
 </div>
-                </CSSTransition>
-              </div>
-            </div>
-            <div className="Profile--Container">
-                
-            </div>
+                    </CSSTransition>
+                </div>
+                </div>
+                <div className="Profile--control">
+                    <h4>Email:</h4>
+                    <h4>{this.props.user.email}</h4>
+                </div>
+                <hr/>
+                <div className="Profile--control">
+                    <h4>Username:</h4>
+                    <h4>{this.props.user.username}</h4>
+                </div>
+             </div>
             </div>
         )
     }
@@ -91,4 +96,4 @@ const mapStateToProps = (state) => {
         }
     }
     
-    export default connect(mapStateToProps, mapDispatchToProps)(withAuth(Profile))
+    export default connect(mapStateToProps, mapDispatchToProps)(withAuth(withRouter(Profile)))

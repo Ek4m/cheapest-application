@@ -1,22 +1,50 @@
 .Index--header{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     overflow-x: hidden;
     min-height: 100vh;
-    background: rgb(255, 136, 0) url('../../images/index-header-background.png');
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.759), rgba(0, 0, 0, 0.759)),url('../../images/index-header-background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
     background-attachment: fixed;
     position: relative;
+    opacity: 0;
+    padding: 2rem 10px;
+    animation: animateIndexHeader 0.6s ease 0.1s forwards;
 }
 
-.Index--header img{
-    width: 450px;
-    margin-right: 1rem;
+@keyframes animateIndexHeader {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.index--button-enter{
+opacity: 0;
+transform: scale(1,0);
+}
+
+.index--button-enter-active{
+opacity: 1;
+    transform: scale(1,1);
+}
+
+.index--button-exit{
+    opacity: 1;
+    transform: scale(1,0);
+}
+
+.index--button-exit-active{
+    opacity: 0;
+    transform: scale(1,0);
 }
 
 .Index--Header--abs__triangle--bottom{
@@ -45,36 +73,40 @@
 .Index--header__content{
     padding: 2rem 1rem;
     border-radius: 4px;
-    /* background-color: rgba(225, 242, 248, 0.829); */
     max-width: 500px;
-    /* margin-left: 4rem; */
     transition: 0.2s ease 0s;
+    margin-left: 4rem;
     display: flex;
     flex-direction: column;
+    transform: translateX(-100%);
+    opacity: 0;
+    animation: animateRegisterHeaderContent 0.4s ease 0.5s forwards;
     align-items: flex-start;
-    /* box-shadow: 0px 0px 6px 3px rgba(11, 199, 158, 0.651); */
 }
-/* 
-.Index--header__content:hover{
-    background-color: rgba(173, 216, 230, 0.774);
-    box-shadow: 0px 0px 10px 4px rgba(11, 199, 158, 0.651);
 
-} */
-
-.Index--header__content h1,
-.Index--header__content p{
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.712);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+@keyframes animateRegisterHeaderContent {
+    0%{
+    transform: translateX(-100%);
+    opacity: 0;
+    }
+    50%{
+        transform: translateX(-50%);
+    opacity: 0;
+    }
+    100%{
+    transform: translateX(0);
+opacity: 1;
+    }
 }
 
 .Index--header__content h1{
 color: rgb(255, 255, 255);
 font-weight: bold;
-/* width: max-content; */
 text-transform: uppercase;
 margin-bottom: 1rem;
-font-size: 2.5rem;
-font-family: 'Mukta', sans-serif;
+text-shadow: 0px 0px 10px black;
+font-size: 3rem;
+font-family: 'Oswald', sans-serif;
 }
 
 .Index--header__content p{
@@ -82,6 +114,7 @@ font-family: 'Mukta', sans-serif;
     text-align: left;
     margin: 1rem auto;
     color: rgb(255, 255, 255);
+    font-family: 'Mukta',sans-serif;
 }
 
 .Index--form{
@@ -98,7 +131,8 @@ font-family: 'Mukta', sans-serif;
 
 .Index--form form .form--control{
     margin: 5px auto 10px auto;
-    text-align-last: left;
+    text-align: left;
+    min-height: 50px;
     width: 100%;
 }
 
@@ -107,28 +141,34 @@ font-family: 'Mukta', sans-serif;
     max-width: 400px;
     width: 90%;
     background-color: rgb(240, 212, 193);
-    border: 1px solid rgb(41, 20, 0);
+    border: 1px solid rgb(112, 60, 12);
     font-size: 1.2rem;
     transition: 0.2s ease 0s;
     font-family: 'Montserrat', sans-serif;
     border-radius: 3px;
-    box-shadow: 0px 0px 2px 1px rgba(104, 42, 0, 0.5);
+    transform: translateX(-100%);
+    opacity: 0;
+    box-shadow: 0px 0px 2px 1px rgba(104, 42, 0, 0.5);   
+    animation: animateRegisterHeaderContent 0.3s ease 0.9s forwards;
 }
 
+
 .Index--form form .form--control input:focus{
-    background-color: rgb(253, 204, 147);
-    box-shadow: 0px 0px 5px 2px rgba(43, 43, 43, 0.678);
+    background-color: rgb(252, 195, 129);
+    box-shadow: 0px 0px 7px 3px rgba(43, 43, 43, 0.507);
     outline: none;
+    border-color: rgb(255, 255, 255);
 }
 
 .Index--form form button{
     padding: 10px 8px;
     color: rgb(255, 255, 255);
-    background-color: rgb(134, 43, 0);
+    background-color: rgb(255, 136, 0);
     border: none;
     border-radius: 4px;
     font-size: 1.2rem;
-    transition: 0.4s ease 0s;
+    transition: 0.2s ease 0s;
+    transform-origin: top;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
 }
@@ -140,8 +180,6 @@ font-family: 'Mukta', sans-serif;
 .Index--form form button:focus{
     outline: none;
 }
-
-
 @media(max-width:1000px){
     .Index--Header--abs__triangle--bottom{
         bottom: -250px;
@@ -153,22 +191,17 @@ font-family: 'Mukta', sans-serif;
     }
 }
 
-
-
 @media(max-width:866px){
     .Index--header{
         flex-direction: column;
-    }
-
-    .Index--header img{
-        margin-left: auto;
-        margin: 2rem 10px;
+        justify-content: center;
     }
 }
 
 @media(max-width:700px){
     .Index--header__content{
         align-items: center;
+        margin-left: 0;
     }
     .Index--header__content h1{
         width: auto;
@@ -183,9 +216,11 @@ font-family: 'Mukta', sans-serif;
     .Index--form form{
         align-items: center;
     }
-    .Index--header img{
-        width: 90%;
+
+    .Index--form form .form--control{
+        text-align: center;
     }
+
     .Index--form form .form--control input{
         width: 100%;
     }
@@ -193,4 +228,3 @@ font-family: 'Mukta', sans-serif;
         text-align: center;
     }
 }
-

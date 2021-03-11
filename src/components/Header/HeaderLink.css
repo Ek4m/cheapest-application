@@ -4,7 +4,7 @@
 }
 
 .HeaderLink a{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Mukta', sans-serif;
     text-decoration: none;
     display: flex;
     align-items: flex-end;
@@ -41,11 +41,6 @@
     border: 1px solid white;
     border-radius: 3px;
     padding: 4px;
-}
-
-.HeaderLink--Title code{
-    font-family: 'Montserrat', sans-serif;
-    color: white;
 }
 
 @media(max-height:450px){

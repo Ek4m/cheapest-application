@@ -2,6 +2,8 @@
     width: 100%;
     min-height: 100vh;
     position: relative;
+    animation: animateRegisterPage 0.3s ease 0s forwards;
+    opacity: 0;
 }
 
 .Register--bck{
@@ -26,9 +28,16 @@
     display: flex;
     transform: translateY(-100%);
     opacity: 0;
-    animation: animateRegister 0.3s ease 0.1s forwards;
+    animation: animateRegister 0.3s ease 0.3s forwards;
 }
-
+@keyframes animateRegisterPage {
+    0%{
+    opacity: 0;
+    }
+    100%{
+    opacity: 1;
+    }
+}
 
 @keyframes animateRegister {
     0%{
