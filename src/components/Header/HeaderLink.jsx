@@ -4,13 +4,10 @@ import './HeaderLink.css';
 
 const HeaderLink = (props) => {
 
-
-
     return (
        <li>
             <div className="HeaderLink">
-            <Link to={props.path} onClick={e => props.clicked(e)}>
-            {props.children}
+            <Link to={props.path}>
                {props.title}
             </Link>
             </div>

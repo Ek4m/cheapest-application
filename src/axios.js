@@ -1,12 +1,7 @@
 import axios from "axios";
 
 
-
-export const instance = axios.create({
-    baseURL:'https://cheapestapp.herokuapp.com/api'
-})
-
-export const findToken = () => {
+const findToken = () => {
     let cookieVal = '';
 
 if(document.cookie.length > 0){
@@ -19,3 +14,9 @@ if(document.cookie.length > 0){
 }
 return cookieVal;
 }
+
+const instance = axios.create({
+    baseURL:'https://cheapestapp.herokuapp.com/api'
+})
+
+export { instance, findToken };

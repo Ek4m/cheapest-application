@@ -1,6 +1,6 @@
 .HeaderLink{
     position: relative;
-    margin: 1rem 1rem 1rem 5px;
+    margin: 3px;
 }
 
 .HeaderLink a{
@@ -9,28 +9,15 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 1.2rem;
     color: white;
     transition: 0.2s ease 0s;
 }
-
-.HeaderLink a i{
-    font-size: 1.6rem;
-    width: 50px;
-    height: 50px;
-    color: white;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    transition: 0.2s ease 0s;
-}
-
 
 .HeaderLink a:hover{
-    color: rgb(90, 24, 0);
-}
-
-.HeaderLink a:hover i{
-    color: rgb(90, 24, 0);
+    color: rgb(87, 49, 0);
 }
 
 .HeaderLink--Title{
@@ -40,15 +27,10 @@
     background-color: rgb(197, 105, 0);
     border: 1px solid white;
     border-radius: 3px;
-    padding: 4px;
+    padding: 2px;
 }
 
 @media(max-height:450px){
-    .HeaderLink a i{
-        font-size: 1.3rem;
-        width: 40px;
-        height: 40px;
-    }
     .HeaderLink--Title {
         bottom: -10px;
         right: -50px;
@@ -56,13 +38,5 @@
     }
     .HeaderLink--Title code{
         font-size: 0.7rem;
-    }
-}
-
-@media(max-height:350px){
-    .HeaderLink a i{
-        font-size: 1rem;
-        width: 35px;
-        height: 35px;
     }
 }

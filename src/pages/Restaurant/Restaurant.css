@@ -1,0 +1,23 @@
+.RestaurantPage{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.RestaurantPage--Container{
+    margin-left: 4rem;
+    text-align: left;
+}
+
+.RestaurantPage--Container h1, p{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.RestaurantPage--Container h1{
+    font-size: 2.5rem;
+    margin: 10px 0;
+}

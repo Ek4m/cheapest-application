@@ -1,0 +1,80 @@
+.WishListComponent{
+    width: 90%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 6px 10px 4px rgb(88, 88, 88);
+    justify-content: flex-start;
+    background-color: rgb(252, 248, 204);
+    margin: 1rem 0;
+}
+
+.WishListComponent img{
+    width: 200px;
+}
+
+.WishListComponent--Container{
+    display: flex;
+    width: calc(100% - 300px);
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 3rem;
+}
+
+.WishListComponent--Container h3{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    color: rgb(105, 105, 105);
+    text-shadow: none;
+    text-align: left;
+}
+
+.WishListComponent--Container h3:nth-child(2){
+    color: rgb(37, 37, 37);
+}
+
+.WishListComponent--Nav{
+    display: flex;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: left;
+}
+
+.WishListComponent--Nav button{
+    padding: 7px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.2s ease 0s;
+    font-size: 1.2rem;
+}
+
+.WishListComponent--Nav button:focus{
+    outline: none;
+}
+
+.WishListComponent--Nav button:nth-child(1){
+   background-color: rgb(253, 27, 27);
+}
+.WishListComponent--Nav button:nth-child(1):hover{
+    background-color: rgb(155, 15, 15);
+ }
+ 
+ .WishListComponent--Nav button:nth-child(1):active{
+    background-color: rgb(53, 0, 0);
+ }
+
+
+.WishListComponent--Nav button:nth-child(2){
+    background-color: rgb(9, 116, 41);
+    margin-left: 1rem;
+ }
+ .WishListComponent--Nav button:nth-child(2):hover{
+    background-color: rgb(0, 88, 27);
+ }
+
+ .WishListComponent--Nav button:nth-child(2):active{
+    background-color: rgb(0, 36, 11);
+ }

@@ -58,18 +58,6 @@ opacity: 1;
     right: -150px;
 }
 
-.Index--Header--abs__triangle--top{
-    width: 300px;
-    height: 300px;
-    background-color: white;
-    transform-origin: center;
-    transform: rotateZ(50deg);
-    position: absolute;
-    top: -180px;
-    left: -150px;
-}
-
-
 .Index--header__content{
     padding: 2rem 1rem;
     border-radius: 4px;
@@ -184,10 +172,6 @@ font-family: 'Oswald', sans-serif;
     .Index--Header--abs__triangle--bottom{
         bottom: -250px;
         right: -180px;
-    }
-    .Index--Header--abs__triangle--top{
-        top: -250px;
-        left: -180px;
     }
 }
 

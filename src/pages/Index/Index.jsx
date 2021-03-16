@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component
+    // Profiler 
+} from 'react'
 import { CSSTransition } from 'react-transition-group';
+import { instance } from '../../axios';
+import RestaurantList from '../../components/RestaurantList/RestaurantList';
 import './Index.css';
 
 export class Index extends Component {
@@ -10,6 +14,14 @@ export class Index extends Component {
 
     componentDidMount(){
         document.title = 'Welcome to Cheapest App!!!';
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextState.imageVisible === this.state.imageVisible){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     onFocusHandler = (e) => {
@@ -26,10 +38,10 @@ export class Index extends Component {
     }
 
     render() {
+        console.log('rendered')
         return (
-            <div className="Index">
+                <div className="Index">
                 <div className="Index--header">
-                <div className="Index--Header--abs__triangle--top"></div>
                 <div className="Index--header__content">
             <h1>The   Cheapest  App</h1>
             <p>Whether you're going to do some of your shopping or all of it online, you want the best bargain you can find.This app fits the best for your needs</p>
@@ -58,6 +70,7 @@ export class Index extends Component {
         </div>         
         <div className="Index--Header--abs__triangle--bottom"></div>
             </div>
+            <RestaurantList />
             </div>
         )
     }

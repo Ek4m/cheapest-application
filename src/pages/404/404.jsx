@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import './404.css'
+import './404.css';
 const PageNotFound = () => {
 
-    useEffect(() =>{
-        document.title = 'Page not found!'
+    React.useEffect(() => {
+        document.title = 'Page Not Found!'
     },[])
-
 
     return (
         <div className="PageNotFound">

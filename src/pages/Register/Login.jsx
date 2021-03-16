@@ -49,7 +49,7 @@ const Login = (props) => {
             password:password.trim(),
         }
        let isValid = true;
-            const emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
               if(!body.email || !emailRegEx.test(body.email)){
                   setEmailError('Enter a valid email');
                   isValid = false;

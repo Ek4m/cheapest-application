@@ -2,104 +2,110 @@ import React, { Fragment } from 'react';
 import HeaderLink from './HeaderLink';
 import './Header.css';
 import { connect } from 'react-redux';
-class Header extends React.PureComponent {
-    //state
+import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import SideDrawerLink from './SideDrawerLink';
+class Header extends React.Component {
+
     state = {
-        isOpen:false
-    }
-    componentDidMount(){
-        window.addEventListener('click', () => {
-            if(this.state.isOpen){
-                this.setState({
-                    isOpen:false
-                })
-            }
-        })
+        isMenuOpen:false
     }
 
-
-
-    //methods
-    setOpenHandler = (e) => {
-        e.stopPropagation()
-     if(!this.state.isOpen){
+    onClickHandler = () => {
         this.setState({
-            isOpen:true
+            isMenuOpen:!this.state.isMenuOpen
         })
-     }
     }
 
-    setCloseHandler = (e) => {
-        e.stopPropagation()
-        if(this.state.isOpen){
-            this.setState({
-                isOpen:false
-            })
-        }
-    }
-
-    clickHeaderHandler = (e) => {
-        e.stopPropagation();
-    }
-
-    clickLinkHandler = (e) => {
-        e.stopPropagation();
+    onCloseHandler = () => {
         this.setState({
-            isOpen:false
+            isMenuOpen:false
         })
     }
 
-    //render
   render(){
-    let cls = this.state.isOpen ? "" : "Header--Close";
-    let clsArrow = ! this.state.isOpen ? "" : "Header--arrow__Close";
+      let headerUpper;
+      let sideDrawer;
+      if(this.props.user === ""){
+        headerUpper = <Fragment>
+          <HeaderLink path="/register"
+          title="Sign Up"/>
+          <HeaderLink path="/register/login"
+          title="Login" />
+           </Fragment>
+
+        sideDrawer = <Fragment>
+            <SideDrawerLink title="Sign Up" url="/register/login" 
+            clicked={this.onCloseHandler}
+            />
+            <SideDrawerLink title="Login" url="/register" 
+            clicked={this.onCloseHandler}
+            />
+        </Fragment>
+
+      }else{
+        headerUpper = <Fragment>
+              <HeaderLink path="/profile"
+            title="Profile"
+            />
+            <HeaderLink path="/wishlist"
+            title="Wishlist"
+            />
+          </Fragment>
+
+sideDrawer = <Fragment>
+<SideDrawerLink title="Profile" url="/profile" 
+clicked={this.onCloseHandler}
+/>
+<SideDrawerLink title="Wishlist" url="/wishlist"
+clicked={this.onCloseHandler}
+/>
+</Fragment>
+      }
     return (
-        <div id="Header" className={`Header ${cls}`}
-        onClick={e=> this.clickHeaderHandler(e)}
-        onMouseOut={(e) => this.setCloseHandler(e)}
-         onMouseOver={(e) => this.setOpenHandler(e)}
-         >
+        <div id="Header" className='Header '>
+           <div className="Header--Upper">
+           <div className="Header--NavBrand">
+                <Link to="/"   
+                onClick={this.onCloseHandler}>Cheapest</Link>
+            </div>
            <div className="Header--nav">
            <ul>
-            <HeaderLink path="/"
-            clicked={this.clickLinkHandler}
-            title="Home"
-            >
-                <i className="fas fa-home"></i>
-            </HeaderLink>
             <HeaderLink path="/about"
-            clicked={this.clickLinkHandler}
             title="About"
-            >
-            <i className="fas fa-info-circle"></i>
-            </HeaderLink>
-          {this.props.user ?   <HeaderLink path="/profile"
-          clicked={this.clickLinkHandler}
-            title="Profile"
-            >
-            <i className="fas fa-user"></i>
-            </HeaderLink> : null}
-         {this.props.user ? null : <Fragment>
-            <HeaderLink path="/register"
-            clicked={this.clickLinkHandler}
-            title="Sign Up"
-            >
-            <i className="fas fa-user-plus"></i>
-            </HeaderLink>
-            <HeaderLink path="/register/login"
-            clicked={this.clickLinkHandler}
-            title="Login"
-            >
-            <i className="fas fa-sign-in-alt"></i>
-            </HeaderLink>
-             </Fragment>}
+            clicked={this.onCloseHandler}
+            />
+         {headerUpper}
             </ul>
            </div>
-           <div className="Header--arrow">
-               <div className={`Header--arrow__arrow ${clsArrow}`} onClick={(e) => this.setOpenHandler(e)}>
-               <i className="fas fa-chevron-right"></i>
-               </div>
+           <div className="HamMenu"
+           onClick={this.onClickHandler}
+           >
+               <div className="HamMenuLine"></div>
+               <div className="HamMenuLine"></div>
+               <div className="HamMenuLine"></div>
            </div>
+           </div>
+          <div className="Header--Bottom">
+          <CSSTransition
+           timeout={200}
+           in={this.state.isMenuOpen}
+           unmountOnExit
+           mountOnEnter
+           classNames="sidedrawer"
+           >
+               <div className="SideDrawer">
+<ul>
+<SideDrawerLink title="About" 
+url="/about"
+clicked={this.onCloseHandler}
+
+/>
+{sideDrawer}
+</ul>
+               </div>
+           </CSSTransition>
+          </div>
         </div>
     )
   }

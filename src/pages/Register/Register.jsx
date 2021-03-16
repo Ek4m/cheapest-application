@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { instance } from '../../axios';
 import * as userActions from '../../redux/actions/user'
 import RegSpinner from '../../components/RegisterSpinner/RegSpinner';
@@ -67,7 +67,7 @@ const Register = (props) => {
             username:username.trim()
         }
        let isValid = true;
-            const emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
               if(!body.email || !emailRegEx.test(body.email)){
                   setEmailError('Enter a valid email');
                   isValid = false;
@@ -206,4 +206,4 @@ const mapStateToProps = (state) => {
         }
     }
     
-    export default connect(mapStateToProps, mapDispatchToProps)(Register)
+    export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register))
