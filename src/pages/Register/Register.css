@@ -136,6 +136,10 @@ font-family: 'Oswald', sans-serif;
     margin: 1rem 2rem;
 }
 
+.Register--Link p{
+    color: rgb(43, 43, 43);
+}
+
 .Register--Link a{
     text-decoration: none;
     color: green;

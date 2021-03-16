@@ -13,6 +13,7 @@ import Login from './pages/Register/Login';
 import WishList from './pages/WishList/WishList';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import Restaurant from './pages/Restaurant/Restaurant';
+import Products from './pages/Products/Products';
 const About = React.lazy(() => import('./pages/About/About'));
 const Profile = React.lazy(() => import('./pages/Profile/Profile'));
 // const Login = React.lazy(() => import('./pages/Register/Login'));
@@ -33,7 +34,7 @@ class App extends PureComponent {
       this.props.getUser('')
     })
     .finally(() => {
-      this.props.getWishlists();
+      // this.props.getWishlists();
     })
   }
 
@@ -53,6 +54,7 @@ class App extends PureComponent {
             <Route path='/about' exact component={About}/>
             <Route path='/profile' exact component={Profile}/>
             <Route path='/restaurants' exact component={RestaurantList}/>
+            <Route path='/products' exact component={Products}/>
             <Route path='/restaurants/:id' exact component={Restaurant}/>
             <Route path='/wishlist' exact component={WishList}/>
               <Route path="/" exact component={Index} />

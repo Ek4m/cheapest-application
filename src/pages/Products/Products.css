@@ -1,0 +1,7 @@
+.Products{
+    padding-top: 7rem;
+}
+
+.Products > h1{
+    font-family: 'Montserrat', sans-serif;
+}

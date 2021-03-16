@@ -14,11 +14,13 @@ useEffect(() => {
     let content;
     if(props.wishlist.length > 0){
         content = props.wishlist.map(product => (
-            <WishListComponent key={product.id} 
-            id={product.id}
+            <WishListComponent key={product.product._id} 
+            id={product.product._id}
             clicked={props.deleteWishlist}
-            name={product.title}
-            imageUrl={product.url}
+            name={product.product.name}
+            imageUrl={product.product.url}
+            price={product.product.price}
+            portion={product.portion}
             />
         ))
     }

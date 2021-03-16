@@ -2,7 +2,7 @@ import React, { Component
     // Profiler 
 } from 'react'
 import { CSSTransition } from 'react-transition-group';
-import { instance } from '../../axios';
+import { findToken, instance } from '../../axios';
 import RestaurantList from '../../components/RestaurantList/RestaurantList';
 import './Index.css';
 

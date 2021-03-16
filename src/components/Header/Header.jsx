@@ -51,6 +51,9 @@ class Header extends React.Component {
             <HeaderLink path="/wishlist"
             title="Wishlist"
             />
+             <HeaderLink path="/products"
+            title="Products"
+            />
           </Fragment>
 
 sideDrawer = <Fragment>
@@ -58,6 +61,9 @@ sideDrawer = <Fragment>
 clicked={this.onCloseHandler}
 />
 <SideDrawerLink title="Wishlist" url="/wishlist"
+clicked={this.onCloseHandler}
+/>
+<SideDrawerLink title="Products" url="/products"
 clicked={this.onCloseHandler}
 />
 </Fragment>

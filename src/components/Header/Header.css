@@ -62,16 +62,16 @@
 
 .Header--Upper ul li {
     list-style: none;
-    min-width: 200px;
+    min-width: 150px;
    display: flex;
-   border-left: 2px solid rgb(255, 255, 255);
+   border-left:1px solid rgb(255, 255, 255);
    align-items: center;
    height: max-content;
     justify-content: center;
 }
 
 .Header--Upper ul li:last-child{
-   border-right: 2px solid rgb(255, 255, 255);
+   border-right: 1px solid rgb(255, 255, 255);
 }
 
 .HamMenu{
