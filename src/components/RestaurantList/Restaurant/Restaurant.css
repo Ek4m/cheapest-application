@@ -1,40 +1,38 @@
 .Restaurant{
-    margin: 10px auto;
-    box-shadow: 0px 5px 6px 2px rgba(43, 43, 43, 0.712);
-    width: 90%;
-    max-width: 800px;
-    min-height: 500px;
+    box-shadow: 0px 3px 6px 2px rgba(99, 99, 99, 0.712);
+    width: 350px;
     display: block;
     border-radius: 10px;
     overflow: hidden;
-    position: relative;
-    margin: 4rem auto;
+    margin: 2rem;
+    transition: 0.3s ease 0s;
+}
+
+.Restaurant:hover{
+    transform: translateY(10px);
+    box-shadow: 0px 8px 6px 2px rgba(99, 99, 99, 0.712);
+
 }
 
 .Restaurant--Bck{
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    height: 250px;
     transition: 0.3s ease 0s;
-    filter: saturate(50%) brightness(50%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.Restaurant:hover .Restaurant--Bck{
-    filter: saturate(100%);
-    transform: scale(1.2,1.2);
-}
 
 .Restaurant--Nav{
     padding: 1rem 10px;
-    position: absolute;
     width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
+    background-color: rgb(252, 218, 218);
+    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+    padding: 10px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -59,9 +57,9 @@
 
 
 .Restaurant--Nav h1{
-    color: white;
-    text-shadow: 0px 0px 5px black;
-    margin: 1rem;
+    color: rgb(49, 49, 49);
+    margin: 1rem 0;
+    font-size: 1rem;
 }
 
 @media(max-width:800px){

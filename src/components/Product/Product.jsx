@@ -4,22 +4,26 @@ import RegSpinner from '../RegisterSpinner/RegSpinner';
 import * as wishlistActions from '../../redux/actions/wishlist';
 import './Product.css'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Product = (props) => {
+
     const [loading, setLoading] = useState(false);
+
     const onAddToWishlist = (e,id) => {
-        e.stopPropagation()
+        e.preventDefault()
        if(!loading){
         setLoading(true)
-        instance.get(`/products/${id}`,{
+        instance.get(`/products/product/${id}`,{
             headers:{
                 'X-Auth-Token':findToken()
             }
         })
         .then(response => {
           if(response.data.food){
-            console.log(response.data.food);
-            props.addToWishlist(response.data.food)
+            props.addToWishlist(response.data.food);
+                          alert('Product added')
+
           }else{
               alert('Product not found')
           }
@@ -36,21 +40,22 @@ const Product = (props) => {
     return (
         <div className="Card">
                     <div className="Card--Image">
-                        <img src="https://i.insider.com/5d0bc2a0e3ecba03841d82d2?width=960&format=jpeg" alt="Image Here!" />
+                       <img src={props.image} alt="iclereu"/>
                     </div>
                         <div className="Card--Container">
-                            <h4 className="meal-heading">{props.title}</h4>
-                                <h5 className="meal-price">${props.price}</h5>
-                            <p className="card-text">{props.description}</p>
-                            <p className="card-restaurant">By: {props.restaurantName}</p>
-                        <div className="Card--Container__Nav">
-                        <a href={props.url} target="_blank">View more</a>
-                        <div 
-                        style={{opacity: loading ? 0.5 : 1}}
-                        href="#" className="Card-wishlist"
-                        onClick={(e) => onAddToWishlist(e, props.id)}
-                        > {loading ? "Loading..." : "+ Wishlist"}</div>
-                        </div>
+                          <h1>{props.title}</h1>
+                          <p>{props.description}</p>
+                          <span>$ {props.price}</span>
+                          <div className="Card--Nav">
+                            <div className="Card--Link">
+                            <Link to="/">View more</Link>
+                            </div>
+                            <div className="Card--Link">
+                            <a 
+                            onClick={(e) => onAddToWishlist(e, props.id)}
+                            href="#">{!loading ? "+Wishlist" : "Loading..."}</a>
+                            </div>
+                          </div>
                         </div>
                         
                 </div>

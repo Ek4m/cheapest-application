@@ -1,5 +1,6 @@
 .WishList{
     min-height: 100vh;
+    padding: 6rem;
     background-color: rgba(248, 248, 248, 0.322);
 }
 
@@ -20,4 +21,44 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.Wishlist--Footer{
+    position: fixed;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(141, 21, 0, 0.753);
+    padding: 1rem;
+}
+
+.Wishlist--Footer button{
+    padding: 10px;
+    background-color: maroon;
+    color: white;
+    transition: 0.2s ease 0s;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.Wishlist--Footer h3{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.Wishlist--Footer button:hover{
+    background-color: rgb(104, 1, 1);
+}
+.Wishlist--Footer button:active{
+    background-color: rgb(41, 0, 0);
+}
+
+.Wishlist--Footer button:focus{
+    outline: none;
 }

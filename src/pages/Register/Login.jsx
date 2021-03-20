@@ -19,10 +19,6 @@ const Login = (props) => {
     const [passwordError, setPasswordError] = useState("");
     const [serverError, setServerError] = useState([]);
 
-    useEffect(() => {
-        emailInput.current.focus()
-    },[])
-
     const setEmailHandler = (e) => {
         setEmail(emailInput.current.value)
         if(emailError){

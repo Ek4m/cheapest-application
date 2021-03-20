@@ -26,9 +26,6 @@ const Register = (props) => {
     const [usernameError, setUsernameError] = useState("");
     const [serverError, setServerError] = useState([]);
 
-    useEffect(() => {
-        emailInput.current.focus()
-    },[])
 
     const setEmailHandler = (e) => {
         setEmail(emailInput.current.value)

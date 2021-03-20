@@ -11,12 +11,12 @@ import PageBoundary from './ErrorBoundary/PageErrors/PageBoundary';
 import PageNotFound from './pages/404/404';
 import Login from './pages/Register/Login';
 import WishList from './pages/WishList/WishList';
-import RestaurantList from './components/RestaurantList/RestaurantList';
-import Restaurant from './pages/Restaurant/Restaurant';
-import Products from './pages/Products/Products';
+
+const Restaurant = React.lazy(() => import('./pages/Restaurant/Restaurant'));
+const RestaurantList = React.lazy(() => import('./components/RestaurantList/RestaurantList'));
 const About = React.lazy(() => import('./pages/About/About'));
+const Products = React.lazy(() => import('./pages/Products/Products'));
 const Profile = React.lazy(() => import('./pages/Profile/Profile'));
-// const Login = React.lazy(() => import('./pages/Register/Login'));
 const Index = React.lazy(() => import( './pages/Index/Index'));
 const Register = React.lazy(() => import('./pages/Register/Register'));
 class App extends PureComponent {
@@ -32,9 +32,6 @@ class App extends PureComponent {
       this.props.getUser(doc.data);
     }).catch(err => {
       this.props.getUser('')
-    })
-    .finally(() => {
-      // this.props.getWishlists();
     })
   }
 
@@ -57,8 +54,8 @@ class App extends PureComponent {
             <Route path='/products' exact component={Products}/>
             <Route path='/restaurants/:id' exact component={Restaurant}/>
             <Route path='/wishlist' exact component={WishList}/>
-              <Route path="/" exact component={Index} />
-   <Route component={PageNotFound} />
+            <Route path="/" exact component={Index} />
+            <Route component={PageNotFound} />
             </Switch>
             </PageBoundary>
            </Suspense>

@@ -6,7 +6,7 @@ const Restaurant = (props) => {
     return (
         <div className="Restaurant">
             <div className="Restaurant--Bck"
-            style={{background:`url("${props.imageUrl}")`, backgroundSize:'cover',backgroundPosition:'center', backgroundRepeat:'no-repeat'}}
+            style={{backgroundImage:`url("${props.imageUrl}")`}}
             >
             </div>
             <div className="Restaurant--Nav">

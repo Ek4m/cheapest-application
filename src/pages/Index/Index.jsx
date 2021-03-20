@@ -8,37 +8,54 @@ import './Index.css';
 
 export class Index extends Component {
     state = {
-        imageVisible:false
+        imageVisible:false,
+        search:''
     }
     searchInput = React.createRef();
+    search = React.createRef();
 
     componentDidMount(){
         document.title = 'Welcome to Cheapest App!!!';
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        if(nextState.imageVisible === this.state.imageVisible){
+        if(nextState.imageVisible === this.state.imageVisible && nextState.search === this.state.search){
             return false;
         }else{
             return true;
         }
     }
 
-    onFocusHandler = (e) => {
-        console.log('salam');
-        this.setState({
-            imageVisible:true
-        })
+    onSubmitHandler = (e) => {
+        e.preventDefault();
+        if(this.state.search){
+            this.props.history.push(`/products?search=${encodeURIComponent(this.state.search.trim())}`);
+        }
     }
-    onBlurHandler = (e) => {
-        console.log('salam');
+
+    onChangeHandler = (e) => {
         this.setState({
-            imageVisible:false
+            search:this.search.current.value
         })
     }
 
+    onFocusHandler = (e) => {
+       if(!this.state.imageVisible){
+        this.setState({
+            imageVisible:true
+        })
+       }
+    }
+    onBlurHandler = (e) => {
+        if(this.state.imageVisible){
+            this.setState({
+                imageVisible:false
+            })
+           }
+    }
+
     render() {
-        console.log('rendered')
+        console.log(this.state.search)
         return (
                 <div className="Index">
                 <div className="Index--header">
@@ -47,10 +64,16 @@ export class Index extends Component {
             <p>Whether you're going to do some of your shopping or all of it online, you want the best bargain you can find.This app fits the best for your needs</p>
                            <div className="Index--form">
          <form action="#"
+         onSubmit={e => this.onSubmitHandler(e)}
           onFocus={e => this.onFocusHandler(e)}
           onBlur={(e) => this.onBlurHandler(e)}>
                     <div className="form--control">
-                        <input type="text" placeholder="Name of the product"
+                        <input type="text" 
+                        placeholder="Name of the product"
+                        value={this.state.search}
+                        ref={this.search}
+                        required
+                        onChange={e => this.onChangeHandler(e)}
                         />
                     </div>
                     <div className="form--control">

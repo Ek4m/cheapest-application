@@ -35,10 +35,10 @@ class Header extends React.Component {
            </Fragment>
 
         sideDrawer = <Fragment>
-            <SideDrawerLink title="Sign Up" url="/register/login" 
+            <SideDrawerLink title="Login" url="/register/login" 
             clicked={this.onCloseHandler}
             />
-            <SideDrawerLink title="Login" url="/register" 
+            <SideDrawerLink title="Sign Up" url="/register" 
             clicked={this.onCloseHandler}
             />
         </Fragment>
@@ -51,9 +51,6 @@ class Header extends React.Component {
             <HeaderLink path="/wishlist"
             title="Wishlist"
             />
-             <HeaderLink path="/products"
-            title="Products"
-            />
           </Fragment>
 
 sideDrawer = <Fragment>
@@ -61,9 +58,6 @@ sideDrawer = <Fragment>
 clicked={this.onCloseHandler}
 />
 <SideDrawerLink title="Wishlist" url="/wishlist"
-clicked={this.onCloseHandler}
-/>
-<SideDrawerLink title="Products" url="/products"
 clicked={this.onCloseHandler}
 />
 </Fragment>

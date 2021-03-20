@@ -4,17 +4,35 @@ import { Link, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import withAuth from '../../hoc/withAuth';
 import * as userActions from '../../redux/actions/user';
+import { findToken, instance } from '../../axios';
 import './Profile.css';
+import Order from '../../components/Orders/Order/Order';
 
 class Profile extends React.PureComponent {
     state = {
-        isMenuOpen:false
+        isMenuOpen:false,
+        orders:[]
     }
 
     componentDidMount(){
         console.log(this.props);
         document.title = `Cheapest App!:: ${this.props.user.username}`;
-        window.addEventListener('click', this.eventWindow)
+        window.addEventListener('click', this.eventWindow);
+        instance.get('/order/me/orders',{
+            headers:{
+                'X-Auth-Token':findToken()
+            }
+        })
+        .then(response => {
+            console.log(response.data);
+           this.setState({
+               orders:response.data
+           })
+        })
+        .catch(err => {
+            alert('Error occured');
+            console.log(err)
+        })
      }
 
     componentWillUnmount(){
@@ -44,9 +62,19 @@ class Profile extends React.PureComponent {
 
 
     render(){
+        let orders = <h1>Loading...</h1>;
+        if(this.state.orders.length > 0){
+            orders = this.state.orders.map(order => (
+                <Order
+                key={order._id} 
+                created={order.created}
+                status={order.status}
+                amount={order.total_amount}
+                />
+            ))
+        }
         return (
             <div className="Profile">
-             <div className="Profile--bck"></div>
              <div className="Profile--Container">
                 <div className="Profile--Info__Head">
                 <h2>{this.props.user.username}'s Profile</h2>
@@ -77,6 +105,11 @@ class Profile extends React.PureComponent {
                 <div className="Profile--control">
                     <h4>Username:</h4>
                     <h4>{this.props.user.username}</h4>
+                </div>
+                <hr/>
+                <div className="Profile--Orders">
+                   <h4>Orders: </h4>
+                    {orders}
                 </div>
              </div>
             </div>

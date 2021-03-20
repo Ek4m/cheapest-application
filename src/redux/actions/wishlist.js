@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { store } from '../store';
 
 
@@ -95,11 +96,11 @@ export const addToWishList = (product) => {
     if(!exists){
       wishlist = [...wishlist, {
         product:product,
-        portion:1
+        count:1
       }]
     }else{
       let index = wishlist.findIndex(prod => prod.product._id === product._id);
-      wishlist[index].portion++;
+      wishlist[index].count++;
     }
     dispatch({type:"ADD_TO_WISHLIST", wishlist:wishlist})
   } 
