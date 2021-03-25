@@ -124,7 +124,7 @@ font-family: 'Oswald', sans-serif;
     width: 100%;
 }
 
-.Index--form form .form--control input{
+.Index--form form .form--control input[type="text"]{
     padding: 5px;
     max-width: 400px;
     width: 90%;

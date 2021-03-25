@@ -1,0 +1,48 @@
+.ProductPage{
+    border-radius: 15px;
+    box-shadow: 0 3px 10px 3px  rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    background-color: white;
+    margin: 6rem auto 2rem auto;
+    text-align: center;
+    font-family: arial;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+}
+
+
+.ProductPage img{
+    width: 80%;
+    margin: 10px;
+    border-top: 4px solid rgb(214, 213, 213);
+    border-right: 4px solid rgb(83, 83, 83);
+    border-bottom: 4px solid rgb(37, 37, 37);
+    border-left: 4px solid rgb(177, 177, 177);
+}
+
+  
+  .ProductPage--price {
+    color: grey;
+    font-size: 22px;
+  }
+  
+.ProductPage--wishlist{
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.2s ease 0s;
+    background-color: orangered;
+    color: white;
+}
+
+.ProductPage--wishlist:hover{
+    background-color: rgb(180, 48, 0);
+}
+
+.ProductPage--wishlist:active{
+    background-color: rgb(116, 31, 0);
+}
+.ProductPage--wishlist:focus{
+    outline: none;
+}

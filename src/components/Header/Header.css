@@ -4,7 +4,7 @@
     flex-direction: column;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 12;
     padding: 10px 0;
     width: 100%;
     min-width: 90px;
@@ -139,4 +139,11 @@ justify-content: space-between;
     .SideDrawer{
         display: block;
     }
+}
+
+@media(min-width:2000px){
+.Header{
+width: 2000px;
+left: calc(50% - 1000px);
+}
 }

@@ -25,13 +25,12 @@ const Restaurant = (props) => {
 
     let content = <PageFallback />;
     if(restaurant){
-        content = <div className="RestaurantPage"
-        style={{background:`linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("${restaurant.logo}")`, backgroundSize:'cover',backgroundPosition:'center', backgroundRepeat:'no-repeat'}}
-        >
-          <div className="RestaurantPage--Container">
-          <h1>{restaurant.name}</h1>
-            <p>{restaurant.description}</p>
-          </div>
+        content = <div className="RestaurantPage">
+            <div className="RestaurantPage--Container">
+        <h1>{restaurant.name}</h1>
+        <h3><b>Cuisine: </b>{restaurant.food_type}</h3>
+            </div>
+            <img src={restaurant.logo} alt=""/>
         </div>
     }
     return content;

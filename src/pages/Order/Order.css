@@ -1,0 +1,129 @@
+.container-fluid {
+    padding-top: 7rem !important;
+     min-height: 100vh;
+     background-size: cover;
+     font-family: 'Lato', sans-serif;
+     color: rgba(116, 116, 116, 0.667);
+     background: linear-gradient(140deg, #fff, 50%, #9b5800);
+     margin-bottom: 0 !important;
+     padding: 2rem;
+}
+
+.container-fluid p {
+    font-size: 14px;
+    margin-bottom: 7px
+}
+
+.media img {
+    border-radius: 15px;
+    border: 5px solid #9b5800;
+    transition: 0.3s;
+}
+
+.media img:hover {
+    transform:  scale(1.2);
+    border: 5px solid #d37700;
+    box-shadow: 2px 2px 10px 0px black
+}
+
+.small {
+    letter-spacing: 0.5px !important
+}
+
+.card-1 {
+    box-shadow: 2px 2px 10px 0px black
+}
+
+hr {
+    background-color: rgba(248, 248, 248, 0.667)
+}
+
+.bold {
+    font-weight: 500
+}
+
+.change-color {
+    color: #9b5800 !important
+}
+
+.card-2 {
+    box-shadow: 1px 1px 3px 0px rgb(112, 115, 139)
+}
+
+.fa-circle.active {
+    font-size: 8px;
+    color: #AB47BC
+}
+
+.fa-circle {
+    font-size: 8px;
+    color: #aaa
+}
+
+.rounded {
+    border-radius: 2.25rem !important
+}
+
+.progress-bar {
+    background-color: #AB47BC !important
+}
+
+.progress {
+    height: 5px !important;
+    margin-bottom: 0
+}
+
+.invoice {
+    position: relative;
+    top: -70px
+}
+
+.Glasses {
+    position: relative;
+    top: -12px !important
+}
+
+.card-footer {
+    background-color: #9b5800;
+    color: #fff
+}
+
+.card-footer h2 {
+    color: black;
+    letter-spacing: 2px !important
+}
+
+.display-3 {
+    font-weight: 500 !important
+}
+
+@media (max-width: 479px) {
+    .invoice {
+        position: relative;
+        top: 7px
+    }
+
+    .border-line {
+        border-right: 0px solid rgb(226, 206, 226) !important
+    }
+}
+
+@media (max-width: 700px) {
+    .card-footer h2 {
+        font-size: 17px
+    }
+
+    .display-3 {
+        font-size: 28px;
+        font-weight: 500 !important
+    }
+}
+
+.card-footer small {
+    letter-spacing: 7px !important;
+    font-size: 12px
+}
+
+.border-line {
+    border-right: 1px solid rgb(226, 206, 226)
+}

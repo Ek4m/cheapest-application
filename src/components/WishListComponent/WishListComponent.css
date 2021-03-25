@@ -2,53 +2,62 @@
     width: 90%;
     max-width: 700px;
     display: flex;
-    align-items: center;
-    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 5px solid rgb(255, 142, 77);
+    border-right: 5px solid rgb(131, 48, 0);
+    border-bottom: 5px solid rgb(68, 26, 1);
+    border-left: 5px solid rgb(255, 122, 45);
+    padding: 10px 10px 20px 2rem;
     box-shadow: 0px 6px 10px 4px rgb(88, 88, 88);
     justify-content: flex-start;
-    background-color: rgb(252, 248, 204);
+    background: rgb(160, 87, 28);
     margin: 1rem 0;
+    border-radius: 8px;
 }
 
 .WishListComponent img{
-    width: 200px;
+    width: 250px;
+    border-radius: 5px;
+    border-top: 3px solid rgb(240, 240, 240);
+    border-right: 3px solid rgb(153, 153, 153);
+    border-bottom: 3px solid rgb(49, 49, 49);
+    border-left: 3px solid rgb(189, 189, 189);
+    box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.699);
 }
 
 .WishListComponent--Container{
+    margin:1rem 0;
     display: flex;
-    width: calc(100% - 300px);
     flex-direction: column;
-    padding: 10px;
-    margin-left: 3rem;
+    align-items: flex-start;
 }
 
 .WishListComponent--Container h3{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    text-transform: uppercase;
-    color: rgb(105, 105, 105);
-    text-shadow: none;
-    text-align: left;
-}
-
-.WishListComponent--Container h3:nth-child(2){
-    color: rgb(37, 37, 37);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
 }
 
 .WishListComponent--Nav{
     display: flex;
-    margin-top: 1rem;
-    width: 100%;
-    text-align: left;
 }
 
 .WishListComponent--Nav button{
-    padding: 7px;
+    padding: 5px;
+    border-radius: 5px;
     border: none;
     color: white;
-    cursor: pointer;
-    border-radius: 4px;
+    font-size: 1.3rem;
     transition: 0.2s ease 0s;
-    font-size: 1.2rem;
+    background-color: rgb(109, 26, 1);
+}
+
+.WishListComponent--Nav button:hover{
+    background-color:rgb(82, 19, 0);
+}
+
+.WishListComponent--Nav button:active{
+    background-color:rgb(26, 8, 0);
 }
 
 .WishListComponent--Nav button:focus{
@@ -56,35 +65,34 @@
 }
 
 .WishListComponent--Nav button:nth-child(1){
-   background-color: rgb(253, 27, 27);
+    margin: 1rem 0;
 }
-.WishListComponent--Nav button:nth-child(1):hover{
-    background-color: rgb(155, 15, 15);
- }
- 
- .WishListComponent--Nav button:nth-child(1):active{
-    background-color: rgb(53, 0, 0);
- }
-
-
 .WishListComponent--Nav button:nth-child(2){
-    background-color: rgb(9, 116, 41);
-    margin-left: 1rem;
- }
- .WishListComponent--Nav button:nth-child(2):hover{
-    background-color: rgb(0, 88, 27);
- }
+    margin: 1rem 0 1rem 1rem;
+}
 
- .WishListComponent--Nav button:nth-child(2):active{
-    background-color: rgb(0, 36, 11);
- }
+@media(max-width:700px){
+    .WishListComponent{
+        padding: 10px;
+        max-width: 400px;
+        align-items: center;
+    }
 
- @media(max-width:800px){
-     .WishListComponent{
-         flex-direction: column;
-         align-items: flex-start;
-     }
-     .WishListComponent--Container{
-         margin-left: 0;
-     }
- }
+    .WishListComponent--Container{
+        align-items: center;
+    }
+    .WishListComponent img{
+        width: 100%;
+    }
+
+    .WishListComponent--Nav{
+        flex-direction: column;
+    }
+
+    .WishListComponent--Nav button:nth-child(1){
+        margin: 1rem;
+    }
+    .WishListComponent--Nav button:nth-child(2){
+        margin: 1rem;
+    }
+}

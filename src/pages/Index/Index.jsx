@@ -1,29 +1,19 @@
-import React, { Component
-    // Profiler 
-} from 'react'
+import React, { PureComponent } from 'react'
 import { CSSTransition } from 'react-transition-group';
-import { findToken, instance } from '../../axios';
 import RestaurantList from '../../components/RestaurantList/RestaurantList';
+import Services from '../../components/Services/Services';
 import './Index.css';
 
-export class Index extends Component {
+export class Index extends PureComponent {
     state = {
         imageVisible:false,
-        search:''
+        search:'',
     }
     searchInput = React.createRef();
     search = React.createRef();
 
     componentDidMount(){
-        document.title = 'Welcome to Cheapest App!!!';
-    }
-
-    shouldComponentUpdate(nextProps, nextState){
-        if(nextState.imageVisible === this.state.imageVisible && nextState.search === this.state.search){
-            return false;
-        }else{
-            return true;
-        }
+        document.title = 'CHEAPEST!!!';
     }
 
     onSubmitHandler = (e) => {
@@ -55,7 +45,6 @@ export class Index extends Component {
     }
 
     render() {
-        console.log(this.state.search)
         return (
                 <div className="Index">
                 <div className="Index--header">
@@ -93,6 +82,7 @@ export class Index extends Component {
         </div>         
         <div className="Index--Header--abs__triangle--bottom"></div>
             </div>
+            <Services />
             <RestaurantList />
             </div>
         )

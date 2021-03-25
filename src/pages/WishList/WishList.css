@@ -2,6 +2,7 @@
     min-height: 100vh;
     padding: 6rem;
     background-color: rgba(248, 248, 248, 0.322);
+    background-color: rgb(255, 243, 188);
 }
 
 .WishList--Header{
@@ -31,7 +32,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(141, 21, 0, 0.753);
+    background-color: rgba(163, 87, 0, 0.856);
     padding: 1rem;
 }
 
@@ -61,4 +62,11 @@
 
 .Wishlist--Footer button:focus{
     outline: none;
+}
+
+@media(max-width:700px){
+    .WishList{
+        padding: 10px;
+        padding-bottom: 6rem;
+    }
 }

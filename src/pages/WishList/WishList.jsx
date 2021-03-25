@@ -5,12 +5,39 @@ import withAuth from '../../hoc/withAuth';
 import './WishList.css';
 import { connect } from 'react-redux';
 import { findToken, instance } from '../../axios';
+import {toast} from 'react-toastify'
+
+let success = () => toast.success('Order delivered succesfully',{
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    })
+
+let error = (err) => toast.error(err.message || 'Error occured', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
 const WishList = (props) => {
+
+    const [ isPressed, setPressed ] = useState('Order now!');
+
     useEffect(() => {
         document.title = 'Your wishlist'
     },[])
 
     const orderHandler = () => {
+       if(isPressed == 'Order now!'){
+           setPressed('Loading...')
         if(props.wishlist.length > 0){
             let totalPrice = 0;
             props.wishlist.forEach(prod => {
@@ -30,17 +57,18 @@ const WishList = (props) => {
                         }
                     })
                     .then(response => {
-                        alert('Order delivered successfully');
+                        success();
                       props.clearWishlist();
                       props.history.push('/');
                     })
                     .catch(err => {
-                        console.log(err);
-                        alert('Error occured. Try again:(')
+                        setPressed('Order now!')
+                       error(err);
                     })
         }else{
-            alert('Add something to wishlist')
+            error();
         }
+       }
     }
 
     let content;
@@ -52,7 +80,7 @@ const WishList = (props) => {
             name={product.product.name}
             imageUrl={product.product.img}
             price={product.product.price}
-            portion={product.portion}
+            portion={product.count}
             />
         ))
     }else{
@@ -79,7 +107,7 @@ const WishList = (props) => {
                         <h3>Total: ${totalPrice.toFixed(2)}</h3>
             <button
             onClick={orderHandler}
-            >Order now!</button>
+            >{isPressed}</button>
         </footer>}
         </div>
     )

@@ -1,6 +1,6 @@
 .Restaurant{
     box-shadow: 0px 3px 6px 2px rgba(99, 99, 99, 0.712);
-    width: 350px;
+    width: 300px;
     display: block;
     border-radius: 10px;
     overflow: hidden;
@@ -16,7 +16,7 @@
 
 .Restaurant--Bck{
     width: 100%;
-    height: 250px;
+    height: 200px;
     transition: 0.3s ease 0s;
     background-size: cover;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@
     padding: 1rem 10px;
     width: 100%;
     display: flex;
-    background-color: rgb(252, 218, 218);
+    background-color: rgb(255, 133, 52);
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
@@ -41,23 +41,23 @@
     color: white;
     font-weight: bold;
     padding: 10px;
-    background-color: rgb(255, 46, 46);
+    background-color: rgb(255, 60, 0);
     border-radius: 5px;
     transition: 0.2s ease 0s;
     text-transform: uppercase;
 }
 
 .Restaurant--Nav a:hover{
-    background-color: rgb(201, 0, 0);
+    background-color: rgb(168, 39, 0);
 }
 
 .Restaurant--Nav a:active{
-    background-color: rgb(80, 0, 0);
+    background-color: rgb(78, 18, 0);
 }
 
 
 .Restaurant--Nav h1{
-    color: rgb(49, 49, 49);
+    color: rgb(255, 255, 255);
     margin: 1rem 0;
     font-size: 1rem;
 }

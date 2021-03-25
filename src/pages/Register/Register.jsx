@@ -103,6 +103,9 @@ const Register = (props) => {
                     setSubmitted(false);
                     if(err.response){
                         setServerError([...err.response.data.errors])
+                        console.log(err.response)
+                    }else if(err.message){
+                        setServerError([{msg:err.message}])
                     }
                 })
               }else{
@@ -119,8 +122,8 @@ const Register = (props) => {
 if(serverError.length > 0){
 errorContent =    serverError.map((err, index) => (
                <div className="Register--error__msg"
-               key={err + Date.now() + index}
-               >{err}</div>
+               key={err.msg + Date.now() + index}
+               >{err.msg}</div>
         ))
 }
     return (

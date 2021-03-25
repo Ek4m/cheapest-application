@@ -4,4 +4,24 @@
     margin: 1rem 0;
     width: 100%;
     background-color: rgb(218, 218, 218);
+    text-decoration: none;
+    color: rgb(58, 58, 58);
+    transition: 0.2s ease 0s;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+.Order:hover{
+    border-bottom-color: rgb(99, 31, 0);
+    border-top-color: rgb(82, 33, 0);
+    background-color: rgb(182, 83, 2);
+    color: white;
+}
+
+.Order h5{
+    font-weight: bold;
+}
+
+.Order h6:nth-child(3){
+    font-weight: bold;
 }

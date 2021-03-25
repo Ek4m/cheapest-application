@@ -70,8 +70,11 @@ class Profile extends React.PureComponent {
                 created={order.created}
                 status={order.status}
                 amount={order.total_amount}
+                id={order._id}
                 />
             ))
+        }else{
+            orders = <h1>Empty</h1>
         }
         return (
             <div className="Profile">
@@ -119,7 +122,8 @@ class Profile extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        user:state.user
+        user:state.user,
+        wishlist:state.wishlist
     }
     }
     

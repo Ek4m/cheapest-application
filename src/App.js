@@ -1,6 +1,8 @@
 import React, { PureComponent, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import * as wishlistActions from './redux/actions/wishlist'
 import * as userActions from './redux/actions/user'
 import { instance, findToken } from './axios';
@@ -10,9 +12,12 @@ import { connect } from 'react-redux';
 import PageBoundary from './ErrorBoundary/PageErrors/PageBoundary';
 import PageNotFound from './pages/404/404';
 import Login from './pages/Register/Login';
-import WishList from './pages/WishList/WishList';
+import Order from './pages/Order/Order';
+import { ToastContainer } from 'react-toastify';
 
 const Restaurant = React.lazy(() => import('./pages/Restaurant/Restaurant'));
+const WishList = React.lazy(() => import('./pages/WishList/WishList'));
+const ProductPage = React.lazy(() => import('./pages/ProductPage/ProductPage'));
 const RestaurantList = React.lazy(() => import('./components/RestaurantList/RestaurantList'));
 const About = React.lazy(() => import('./pages/About/About'));
 const Products = React.lazy(() => import('./pages/Products/Products'));
@@ -43,6 +48,7 @@ class App extends PureComponent {
         return (
             <div className="App" id="App">
          <Header />
+         <ToastContainer />
            <Suspense fallback={<PageFallback />}>
            <PageBoundary>
            <Switch>
@@ -52,7 +58,9 @@ class App extends PureComponent {
             <Route path='/profile' exact component={Profile}/>
             <Route path='/restaurants' exact component={RestaurantList}/>
             <Route path='/products' exact component={Products}/>
+            <Route path='/products/:id' exact component={ProductPage}/>
             <Route path='/restaurants/:id' exact component={Restaurant}/>
+            <Route path='/my/orders/:id' exact component={Order}/>
             <Route path='/wishlist' exact component={WishList}/>
             <Route path="/" exact component={Index} />
             <Route component={PageNotFound} />
@@ -75,9 +83,8 @@ const mapStateToProps = (state) => {
   
   const mapDispatchToProps = (dispatch) => {
       return {
-          getUser:(body) => dispatch(userActions.loginUser(body)),          deleteWishlist:(id) => dispatch(wishlistActions.deleteWishlist(id)),
-          getWishlists:() => dispatch(wishlistActions.getWishlists())
-
+          getUser:(body) => dispatch(userActions.loginUser(body)),         
+          deleteWishlist:(id) => dispatch(wishlistActions.deleteWishlist(id))
       }
   }
   

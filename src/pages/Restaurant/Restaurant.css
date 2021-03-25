@@ -1,23 +1,60 @@
 .RestaurantPage{
     width: 100%;
     min-height: 100vh;
+    padding: 6rem 1rem 1rem 1rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
 }
+
+
 
 .RestaurantPage--Container{
-    margin-left: 4rem;
-    text-align: left;
-}
-
-.RestaurantPage--Container h1, p{
-    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+    justify-content: center;
     font-family: 'Montserrat', sans-serif;
 }
 
-.RestaurantPage--Container h1{
-    font-size: 2.5rem;
-    margin: 10px 0;
+
+.RestaurantPage img{
+    width: 350px;
+    border-top: 4px solid rgb(214, 213, 213);
+    border-right: 4px solid rgb(83, 83, 83);
+    border-bottom: 4px solid rgb(37, 37, 37);
+    border-left: 4px solid rgb(177, 177, 177);
+    transform: translateY(-100%);
+opacity: 0;
+    box-shadow: 0px 5px 7px 2px rgb(59, 59, 59);
+    animation: animateRestImage 0.5s ease 0.3s forwards;
+}
+
+@keyframes animateRestImage{
+    0%{
+transform: translateY(-100%);
+opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@media(max-width:800px){
+    .RestaurantPage{
+        flex-direction: column;
+    }
+
+    .RestaurantPage--Container{
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media(max-width:500px){
+.RestaurantPage img{
+    width: 100%;
+}
 }

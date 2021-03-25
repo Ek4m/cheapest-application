@@ -1,0 +1,198 @@
+.ProductFilter{
+    margin: 10px auto;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid rgb(160, 91, 0);
+    border-bottom: 1px solid rgb(214, 96, 0);
+    box-shadow: 0px 2px 6px 1px rgba(146, 146, 146, 0.459);
+    width: 100%;
+    background-color: rgb(255, 192, 75);
+    display: flex;
+}
+
+.filter--control{
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-left: 2rem;
+}
+
+.filter--control code{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: rgb(90, 90, 90);
+    font-weight: bold;
+}
+
+.filter--control label{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+}
+
+.filter--control__box{
+  display: flex;
+  align-items: center;
+}
+
+.filter--control__box input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+.filter--control__box label{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.control__box__input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  transition: 0.2s ease 0s;
+  border-radius: 50%;
+}
+
+.filter--control__box label:hover input ~ .control__box__input {
+  background-color: #ccc;
+}
+
+.filter--control__box label:hover input:checked ~ .control__box__input {
+  background-color: #683b00;
+}
+
+.filter--control__box input:checked ~ .control__box__input {
+  background-color: #c77305;
+}
+
+.control__box__input:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.filter--control__box label input:checked ~ .control__box__input:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter--control__box label.control__box__input:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+.filter--control  input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 200px;
+  }
+  .filter--control  input[type=range]:focus {
+    outline: none;
+  }
+ .filter--control   input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5.4px;
+    cursor: pointer;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+  }
+  .filter--control  input[type=range]::-webkit-slider-thumb {
+    border: 1px solid #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #ffb120;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -9px;
+  }
+  .filter--control  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ffffff;
+  }
+  .filter--control  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 5.4px;
+    cursor: pointer;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 0.2px solid #010101;
+  }
+  .filter--control  input[type=range]::-moz-range-thumb {
+    border: 1px solid #000000;
+    height: 20px;
+    width: 10px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  .filter--control  input[type=range]::-ms-track {
+    width: 100%;
+    height: 5.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  .filter--control  input[type=range]::-ms-fill-lower {
+    background: #ffffff;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+  }
+  .filter--control  input[type=range]::-ms-fill-upper {
+    background: #ffd06b;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+  }
+  .filter--control  input[type=range]::-ms-thumb {
+    border: 1px solid #000000;
+    height: 20px;
+    width: 10px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  .filter--control  input[type=range]:focus::-ms-fill-lower {
+    background: #ffd06b;
+  }
+  .filter--control  input[type=range]:focus::-ms-fill-upper {
+    background: #ffd06b;
+  }
+
+  @media(max-width:750px){
+    .ProductFilter{
+      flex-direction: column;
+    }
+
+    .filter--control{
+      margin: 1rem 0;
+    }
+  }
