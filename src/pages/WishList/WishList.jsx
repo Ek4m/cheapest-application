@@ -9,7 +9,7 @@ import {toast} from 'react-toastify'
 
 let success = () => toast.success('Order delivered succesfully',{
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 1500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -19,7 +19,7 @@ let success = () => toast.success('Order delivered succesfully',{
 
 let error = (err) => toast.error(err.message || 'Error occured', {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -47,7 +47,10 @@ const WishList = (props) => {
                     myOrder._food = props.wishlist.map(prod => (
                         {
                             foodType:prod.product._id,
-                            count:prod.count
+                            foodName:prod.product.name,
+                            restaurantId:prod.product._restaurant,
+                            count:prod.count,
+                            amount:prod.count * prod.product.price
                         }
                     ))
                    let tkn = findToken();

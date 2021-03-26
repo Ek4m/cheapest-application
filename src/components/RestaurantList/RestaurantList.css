@@ -1,5 +1,6 @@
 .RestaurantList{
-    margin-top: 6rem;
+    padding-top: 6rem;
+    background-color: rgb(255, 255, 175);
 }
 
 .RestaurantList > h1{

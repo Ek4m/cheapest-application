@@ -11,8 +11,9 @@ const ProductFilter =React.forwardRef((props, ref) => {
                 type="range" 
                 onChange={props.changed}
                 value={props.price}
-                min="0" 
-                max="100" 
+                min="0"
+                step="2" 
+                max="200" 
                 name="price" 
                 id="prodPrice"/>
                 <code>Up to {props.price} m</code>

@@ -66,7 +66,7 @@ const Product = (props) => {
     return (
         <div className="ProductCard">
                     <div className="ProductCard--Image">
-                       <img src={props.image} alt="iclereu"/>
+                       <img src={props.image} alt={props.name}/>
                     </div>
                         <div className="ProductCard--Container">
                           <h1>{props.title}</h1>

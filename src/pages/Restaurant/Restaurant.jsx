@@ -29,8 +29,10 @@ const Restaurant = (props) => {
             <div className="RestaurantPage--Container">
         <h1>{restaurant.name}</h1>
         <h3><b>Cuisine: </b>{restaurant.food_type}</h3>
+        <h3><b>Address: </b>{restaurant.address}</h3>
+        <p>{restaurant.description}</p>
             </div>
-            <img src={restaurant.logo} alt=""/>
+            <img src={restaurant.logo} alt={restaurant.name}/>
         </div>
     }
     return content;

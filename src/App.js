@@ -16,6 +16,7 @@ import Order from './pages/Order/Order';
 import { ToastContainer } from 'react-toastify';
 
 const Restaurant = React.lazy(() => import('./pages/Restaurant/Restaurant'));
+const UpdateProfile = React.lazy(() => import('./pages/UpdateProfile/UpdateProfile'));
 const WishList = React.lazy(() => import('./pages/WishList/WishList'));
 const ProductPage = React.lazy(() => import('./pages/ProductPage/ProductPage'));
 const RestaurantList = React.lazy(() => import('./components/RestaurantList/RestaurantList'));
@@ -56,6 +57,7 @@ class App extends PureComponent {
             <Route path='/register' exact component={Register}/>
             <Route path='/about' exact component={About}/>
             <Route path='/profile' exact component={Profile}/>
+            <Route path='/profile/update' exact component={UpdateProfile}/>
             <Route path='/restaurants' exact component={RestaurantList}/>
             <Route path='/products' exact component={Products}/>
             <Route path='/products/:id' exact component={ProductPage}/>

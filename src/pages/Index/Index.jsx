@@ -61,6 +61,7 @@ export class Index extends PureComponent {
                         placeholder="Name of the product"
                         value={this.state.search}
                         ref={this.search}
+                        minLength="3"
                         required
                         onChange={e => this.onChangeHandler(e)}
                         />
@@ -82,7 +83,6 @@ export class Index extends PureComponent {
         </div>         
         <div className="Index--Header--abs__triangle--bottom"></div>
             </div>
-            <Services />
             <RestaurantList />
             </div>
         )

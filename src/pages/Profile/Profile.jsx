@@ -94,7 +94,7 @@ class Profile extends React.PureComponent {
                     classNames="profileMenu"
                     >
 <div className="Profile--Menu__Content" onClick={(e) => e.stopPropagation()}>
-    <Link to="/">Update</Link>
+    <Link to="/profile/update">Update</Link>
     <button onClick={(e) => this.onLogoutHandler(e)}>Logout</button>
 </div>
                     </CSSTransition>

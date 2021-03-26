@@ -52,15 +52,23 @@
 }
 
 .Profile--Menu__Arrow:hover{
-    background-color: rgb(192, 192, 192);
+    background-color: rgb(68, 68, 68);
 }
 
 .Profile--Menu__Arrow:active{
-    background-color: rgb(83, 83, 83);
-}
+    background-color: rgb(24, 24, 24);}
+
+
+    .Profile--Menu__Arrow:hover i{
+        color: white;
+    }
+    .Profile--Menu__Arrow:active i{
+        color: white;
+    }
 
 .Profile--Menu__Arrow i{
     color: rgb(51, 51, 51);
+    transition: 0.2s ease 0s;
     font-size: 1.4rem;
 }
 

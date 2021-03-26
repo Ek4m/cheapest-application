@@ -23,30 +23,8 @@ const Order = (props) => {
                setOrder(response.data.order);
             console.log(response.data)
             document.title = 'Your orders';
-            let promises = response.data.order._food.map((food, index) => {
-                return new Promise((resolve, reject) => {
-                    instance.get(`/products/product/${food.foodType}`,{
-                        headers:{
-                            'X-Auth-Token':findToken()
-                        }
-                    })
-                    .then(res => {
-                        resolve({...res.data, ['count']:food.count})
-                    })
-                    .catch(err => {
-                        reject(err);
-                    })
-                })
-            })
-            Promise.all(promises)
-            .then(foods => {
-                console.log(foods)
-                setProducts(foods)
-            })
-            .catch(err => {
-                console.log(err)
-                setProdError(true);
-            })
+            setProducts(response.data.order._food)
+
            }else{
             props.history.push('/profile');
            }
@@ -64,18 +42,19 @@ const Order = (props) => {
    if(error){
        content = <h1>Error occured</h1>
    }else if(order){
-
 let prods = <h1>Loading...</h1>;
 if(prodError){
     prods = <h1>Couldn't get products</h1>
-}else{
+}else {
+    console.log(products)
     prods = products.map(prod => (
         <OrderProduct
-        key={prod.food._id}
-        name={prod.food.name}
+        key={prod._id}
+        name={prod.foodName}
         quantity={prod.count}
-        amount={prod.food.price}
-        image={prod.food.img}
+        amount={prod.price}
+        image={prod.img}
+        restName={prod.restaurantName}
         />
     ))
 }

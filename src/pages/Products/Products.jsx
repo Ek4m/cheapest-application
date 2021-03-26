@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef, Fragment } from 'react'
 import { withRouter } from 'react-router';
 import { findToken, instance } from '../../axios';
 import * as userActions from '../../redux/actions/user';
@@ -10,157 +10,158 @@ import { connect } from 'react-redux';
 import RegSpinner from '../../components/RegisterSpinner/RegSpinner';
 import ProductFilter from '../../components/Product/ProductFilter/ProductFilter';
 
+import { toast } from 'react-toastify';
+
+let success = (msg) => toast.success(msg,{
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    })
+
+    let error = (err) => toast.error(err, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
 class Products extends Component {
     priceInput = createRef();
 
     state = {
-        initialProducts:[],
-        usedProducts:[],
-        fetchError:false,
-        noProductFound:false,
-        price:0,
-        listStyle:'low_to_expensive',
-        page:1,
-        next:2,
-        nextExist:true
+       listStyle:'low_to_expensive',
+        foods:null,
+        currentPage:1,
+        nextExists:true,
+        price:200,
+        prodName:'',
+        isClicked:false
     }
 
     onPriceChange = () => {
-        let price = Number(this.priceInput.current.value);
-        let usedArr = [...this.state.initialProducts];
-        let newArr = usedArr.filter(prod => prod.price < price);
         this.setState({
-            price: this.priceInput.current.value,
-            usedProducts:[...newArr]
+            price:+this.priceInput.current.value.trim()
         })
     }
 
-    onCheckboxChange = (type) => {
-       if(type !== this.state.listStyle){
-            let usedArray = [...this.state.usedProducts];
-            let newArr = usedArray.reverse();
-            this.setState({
-                listStyle:type,
-                usedProducts:newArr
-            })      
-       }
-    }
-
-
-
-    loadData = (arg) => {
-            let params = new URLSearchParams(window.location.href.split('?')[1]);
-        let name = params.get('search');
-        if(name){
-            name = params.get('search').trim();
-            instance.get(`/products/filter?search=${name}&page=${this.state.page}&limit=5`,{
-                headers:{
-                    'X-Auth-Token': findToken()
-                }
-            })
-            .then(response => {
-                document.title = 'Products';
-              if(response.data.results.length > 0){
-                if(response.data.next){
-                 if(arg === 'mount'){
-                     console.log('mountdadi')
-                    this.setState({
-                        initialProducts:response.data.results,
-                        usedProducts:response.data.results,
-                        nextExist:true
-                    })
-                 }else{
-                    console.log('updatededi')
-                    let usedArr = [...this.state.usedProducts, ...response.data.results].filter(prod => prod.price <= this.state.price);
-                    if(this.state.listStyle === 'expensive_to_low'){
-                        console.log('burdadi')
-                        console.log(usedArr)
-                        usedArr.sort((a,b) => b.price - a.price)
-                    }
-                    console.log(usedArr)
-                    this.setState({
-                        usedProducts: usedArr,
-                        nextExist:true
-                    })
-                 }
-                }else{
-                    let usedArr = [...this.state.usedProducts, ...response.data.results].filter(prod => prod.price <= this.state.price);
-                    if(this.state.listStyle === 'expensive_to_low'){
-                        console.log('burdadi')
-                        usedArr.sort((a,b) => b.price - a.price)
-                    }
-                    this.setState({
-                        usedProducts:usedArr,
-                        nextExist:false
-                    })
-                }
-              }
-              
-              else{
-                  this.setState({
-                    noProductFound:true
-                  })
-              }
-            })
-            .catch(err => {
-                document.title = err.message;
-                this.setState({
-                    fetchError:true
-                })
-            })
-        }else{
-           this.props.history.push('/')
-       }
-        }        
-
-    scrollHandler = () => {        
-        if(Math.trunc(document.body.getBoundingClientRect().bottom) === window.innerHeight){
-        if(this.state.nextExist){
-            this.setState({
-                page:this.state.page + 1,
-                next:this.state.next + 1,
-            })
-        }
-        }
-    }
 
     componentDidMount(){
-        window.addEventListener('scroll', this.scrollHandler);
-        this.loadData('mount');
+        let params = new URLSearchParams(window.location.href.split('?')[1]);
+        let name = params.get('search');
+        if(name){
+            instance.get(`/products/filter?search=${name.trim()}&limit=5&page=${this.state.currentPage}`,{headers:{'X-Auth-Token':findToken()}})
+            .then(response => {
+                console.log(response.data)
+                document.title = 'List of the Products';
+                if(response.data.next){
+                    this.setState({
+                        foods:response.data.results, 
+                        prodName:name
+                    })
+                }else{
+                    this.setState({
+                        foods:response.data.results,
+                        nextExists:false,
+                        prodName:name
+                    })
+                }
+            })
+        }else{
+            console.log('yox')
+        }
     }
 
     componentDidUpdate(prevProps, prevState){
-      if(prevState.page !== this.state.page){
-        if(this.state.nextExist){
-        this.loadData('update');
+        if(prevState.currentPage !== this.state.currentPage){
+            if(this.state.nextExists){
+                instance.get(`/products/filter?search=${this.state.prodName}&limit=5&page=${this.state.currentPage}`,{headers:{'X-Auth-Token':findToken()}})
+                .then(response => {
+                    document.title = 'List of the Products';
+                    if(response.data.next){
+                        this.setState({
+                            isClicked:false,
+                            foods:[ ...this.state.foods,...response.data.results], 
+                        })
+                    }else{
+                        this.setState({
+                            isClicked:false,
+                            foods:[ ...this.state.foods,...response.data.results], 
+                            nextExists:false,
+                        })
+                    }
+                })
+                .catch(err => {
+                    this.setState({
+                        isClicked:false,
+                        currentPage:this.state.currentPage - 1,
+                    })
+                    error(err.message || 'Failed. Please Try again')
+                })
+            }
+        }else if(prevState.listStyle !== this.state.listStyle){
+            if(this.state.listStyle === 'low_to_expensive'){
+                let arr = [...this.state.foods].sort((a,b) => a.price - b.price);
+                this.setState({
+                    foods:arr
+                })
+            }else if(this.state.listStyle === 'expensive_to_low'){
+                let arr = [...this.state.foods].sort((a,b) => b.price - a.price);
+                this.setState({
+                    foods:arr
+                })
+            }
         }
     }
-}
 
-componentWillUnmount(){
-    window.removeEventListener('scroll', this.scrollHandler);
 
-}
+
+    onScrollHandler = () => {
+        if(this.state.nextExists){
+            this.setState({
+                currentPage:this.state.currentPage + 1,
+                isClicked:true
+            })
+        }
+    }
+
+    onSortHandler = (type) => {
+            this.setState({
+                listStyle:type
+            })
+        }
 
     render(){
         let content = <RegSpinner />
-       if(this.state.fetchError){
-           content = <PageFallback />
-       }else if(this.state.noProductFound){
-        content = <h1 style={{margin:'2rem'}}>No Product Found:(</h1>
-       }else if(this.state.usedProducts.length > 0){
-        content = <ProductList products={this.state.usedProducts} />
-    }
+        if(this.state.foods){
+            let arr = this.state.foods.filter(prod => prod.price <= this.state.price);
+            content =   <Fragment>
+                 <ProductFilter
+                price={this.state.price}
+                change={this.onSortHandler}
+                changed={this.onPriceChange}
+                ref={this.priceInput}
+                name={this.state.prodName}
+                listStyle={this.state.listStyle}
+                />
+              <ProductList 
+              products={arr}
+              />
+             {this.state.nextExists && <button 
+            onClick={this.onScrollHandler}
+            disabled={this.state.isClicked}
+            className="Prod--Load">{this.state.isClicked ? "Wait..." : "Load More..."}</button>}
+            </Fragment>
+           
+        }
         return (
             <div className="Products">
                 <h1>Products List</h1>
-                <ProductFilter
-                price={this.state.price}
-                change={this.onCheckboxChange}
-                changed={this.onPriceChange}
-                ref={this.priceInput}
-                listStyle={this.state.listStyle}
-                />
                 {content}
             </div>
         )

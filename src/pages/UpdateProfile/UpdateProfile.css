@@ -1,0 +1,95 @@
+.UpdateProfile{
+    padding: 6rem 10px 3rem 10px;
+    min-height: 100vh;
+    background-color: rgb(252, 178, 41);
+}
+
+.Update--Container{
+    width: 700px;
+    box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.74);
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    transition: 0.2s ease 0s;
+    transform: translateY(-100%);
+    opacity: 0;
+    border-radius: 10px;
+    animation: animateUpdate 0.4s ease 0.4s forwards;
+}
+
+@keyframes animateUpdate{
+    0%{
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.Form--Info__Update{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 175, 175);
+    margin: 10px 0;
+}
+
+.Form--Info__Update h1{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.Form--Update__Control{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+.Form--Update__Control label{
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.Form--Update__Control input{
+    padding: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    width: 100%;
+}
+
+.Form--Update__Control input:focus{
+    outline: none;
+    border-color: rgb(63, 63, 63);
+}
+
+.Form--Update__Control button{
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: 0.2s ease 0s;
+    background-color: rgb(255, 35, 35);
+    padding: 10px;
+}
+
+.Form--Update__Control button:disabled{
+    background-color: grey;
+}
+
+.Form--Update__Control button:disabled:hover{
+    background-color: grey;
+}
+
+.Form--Update__Control button:hover{
+    background-color: rgb(180, 25, 25);
+}
+
+.Form--Update__Control button:active{
+    background-color: rgb(95, 14, 14);
+}
+
+.Form--Update__Control button:focus{
+    outline: none;
+}

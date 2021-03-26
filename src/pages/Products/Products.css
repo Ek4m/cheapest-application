@@ -10,3 +10,35 @@
 .Products > h1{
     font-family: 'Montserrat', sans-serif;
 }
+
+.Prod--Load{
+    margin: 1rem auto;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 9px;
+    background-color: orangered;
+    color: white;
+    transition: 0.2s ease 0s;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.Prod--Load:disabled{
+    cursor: not-allowed;
+    background-color: rgb(136, 136, 136);
+}
+
+
+.Prod--Load:disabled:hover{
+    background-color: rgb(136, 136, 136);
+
+}
+
+.Prod--Load:active{
+    background-color: rgb(99, 28, 2);
+
+}
+
+.Prod--Load:focus{
+    outline: none;
+}

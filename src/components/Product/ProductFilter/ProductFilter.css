@@ -31,12 +31,9 @@
     font-size: 1.6rem;
 }
 
-.filter--control__box{
-  display: flex;
-  align-items: center;
-}
 
-.filter--control__box input{
+
+.filter--control__box input[type="checkbox"]{
   position: absolute;
   opacity: 0;
   cursor: pointer;
