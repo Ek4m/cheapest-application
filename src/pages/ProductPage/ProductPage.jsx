@@ -29,13 +29,10 @@ const ProductPage = (props) => {
 
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        console.log('aee')
         const id = props.match.params.id;
-        console.log(props)
         instance.get('/products/product/' + id)
         .then(response => {
             if(response.data.food){
-                console.log(response.data.food)
                 document.title = response.data.food.name
                 setProduct(response.data.food);
             }else{

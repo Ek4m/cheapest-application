@@ -7,17 +7,12 @@ class RegisterBoundary extends React.Component {
     }
 
     static getDerivedStateFromError(error){
-        console.log('Derived state from props');
-        console.log(Object.entries(error))
-        console.log(error.message);
-        console.log(typeof error);
         return {
             hasError:true
         }
     }
 
     componentDidCatch(error, errorInfo){
-             console.log('cdcdam salamlar')
     }
 
 

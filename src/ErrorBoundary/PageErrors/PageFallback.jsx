@@ -14,7 +14,6 @@ const RegisterFallback = () => {
             </div>
         )
     }
-        console.log('internet sikdirib')
        return (
        <div className='RegisterFallback'>
                 <h1>No connection</h1>   

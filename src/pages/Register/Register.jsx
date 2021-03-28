@@ -103,7 +103,6 @@ const Register = (props) => {
                     setSubmitted(false);
                     if(err.response){
                         setServerError([...err.response.data.errors])
-                        console.log(err.response)
                     }else if(err.message){
                         setServerError([{msg:err.message}])
                     }

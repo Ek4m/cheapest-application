@@ -3,6 +3,26 @@ import { instance } from '../../axios'
 import Restaurant from './Restaurant/Restaurant';
 import './RestaurantList.css'
 
+import { toast } from 'react-toastify';
+
+let success = (msg) => toast.success(msg,{
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    })
+    let error = (err) => toast.error(err, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
 const RestaurantList = () => {
     const [restaurants, setRestaurants] = useState([]);
     useEffect(() => {
@@ -11,7 +31,7 @@ const RestaurantList = () => {
             setRestaurants(response.data);
         })
         .catch(err =>{
-            console.log(err);
+            error(err.message || 'Couldn\'t fetch restaurants')
         })
     },[])
 

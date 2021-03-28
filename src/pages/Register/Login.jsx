@@ -66,7 +66,6 @@ const Login = (props) => {
                         props.getUser(userData.data);
                         props.history.push('/');
                     }).catch(err => {
-                        console.log(err)
                         if(err.response){
                             let errorArr = err.response.data.errors.map(err => err.msg);
                                 setServerError([...errorArr])
@@ -76,7 +75,6 @@ const Login = (props) => {
                     })
                 })
                 .catch((err) => {
-                    console.log(err)
                     if(err.response){
                         let errorArr = err.response.data.errors.map(err => err.msg);
                             setServerError([...errorArr])

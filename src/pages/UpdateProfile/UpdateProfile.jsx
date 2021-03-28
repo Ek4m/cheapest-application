@@ -116,7 +116,6 @@ const UpdateProfile = (props) => {
               }
           })
           .then(response => {
-              console.log(response.data)
               setPasswordSubmitted(false);
               success('Password updated successfully')
           })

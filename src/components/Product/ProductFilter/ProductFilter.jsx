@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import './ProductFilter.css';
 const ProductFilter =React.forwardRef((props, ref) => {
-    console.log('rendered')
         return (
             <div className="ProductFilter">
                 <div className="filter--control">

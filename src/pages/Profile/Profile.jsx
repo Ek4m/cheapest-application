@@ -15,7 +15,6 @@ class Profile extends React.PureComponent {
     }
 
     componentDidMount(){
-        console.log(this.props);
         document.title = `Cheapest App!:: ${this.props.user.username}`;
         window.addEventListener('click', this.eventWindow);
         instance.get('/order/me/orders',{
@@ -24,14 +23,12 @@ class Profile extends React.PureComponent {
             }
         })
         .then(response => {
-            console.log(response.data);
            this.setState({
                orders:response.data
            })
         })
         .catch(err => {
             alert('Error occured');
-            console.log(err)
         })
      }
 

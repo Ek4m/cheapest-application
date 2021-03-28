@@ -5,8 +5,6 @@ const WishListComponent = (props) => {
    const onRedirect = () => {
     if(props.id){
         props.history.push(`/products/${props.id}`);
-    }else{
-        console.log('yoxdu')
     }
 }
     return (

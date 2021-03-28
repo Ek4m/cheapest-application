@@ -7,8 +7,7 @@ const withAuth = (Component) => {
          if(this.props.user){
           return <Component {...this.props} />
          }else{
-           console.log('redirect')
-return <div></div>
+return <Redirect />
          }           
           }          
       }

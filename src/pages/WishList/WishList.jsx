@@ -97,7 +97,6 @@ const WishList = (props) => {
                 })
         wishListFooter = true;
     }
-    console.log(totalPrice);
     return (
         <div className="WishList">
             <div className="WishList--Header">

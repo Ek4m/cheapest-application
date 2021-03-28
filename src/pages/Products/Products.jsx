@@ -1,5 +1,5 @@
 import React, { Component, createRef, Fragment } from 'react'
-import { withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { findToken, instance } from '../../axios';
 import * as userActions from '../../redux/actions/user';
 import ProductList from '../../components/Product/ProductList/ProductList';
@@ -41,6 +41,7 @@ class Products extends Component {
         nextExists:true,
         price:200,
         prodName:'',
+        isEmpty:false,
         isClicked:false
     }
 
@@ -57,7 +58,6 @@ class Products extends Component {
         if(name){
             instance.get(`/products/filter?search=${name.trim()}&limit=5&page=${this.state.currentPage}`,{headers:{'X-Auth-Token':findToken()}})
             .then(response => {
-                console.log(response.data)
                 document.title = 'List of the Products';
                 if(response.data.next){
                     this.setState({
@@ -73,7 +73,10 @@ class Products extends Component {
                 }
             })
         }else{
-            console.log('yox')
+            document.title = 'No Product';
+            this.setState({
+                isEmpty:true
+            })
         }
     }
 
@@ -158,6 +161,8 @@ class Products extends Component {
             className="Prod--Load">{this.state.isClicked ? "Wait..." : "Load More..."}</button>}
             </Fragment>
            
+        }else if(this.state.isEmpty){
+          content =   <h1>No Product</h1>
         }
         return (
             <div className="Products">

@@ -21,7 +21,6 @@ const Order = (props) => {
         .then(response => {
            if(response.data && response.data.order){
                setOrder(response.data.order);
-            console.log(response.data)
             document.title = 'Your orders';
             setProducts(response.data.order._food)
 
@@ -31,7 +30,6 @@ const Order = (props) => {
         })
         .catch(err => {
             document.title = 'Not found';
-            console.log(err)
             setError(true)
         })
        }
@@ -46,7 +44,6 @@ let prods = <h1>Loading...</h1>;
 if(prodError){
     prods = <h1>Couldn't get products</h1>
 }else {
-    console.log(products)
     prods = products.map(prod => (
         <OrderProduct
         key={prod._id}

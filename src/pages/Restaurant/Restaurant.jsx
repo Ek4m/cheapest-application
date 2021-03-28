@@ -7,10 +7,8 @@ const Restaurant = (props) => {
     const [restaurant, setRestaurant] = useState(null);
     useEffect(() => {
         const id = props.match.params.id;
-        console.log(props)
         instance.get('/restaurants/' + id)
         .then(response => {
-            console.log(response.data.restaurant)
             if(response.data.restaurant){
                 document.title = response.data.restaurant.name
                 setRestaurant(response.data.restaurant);

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { CSSTransition } from 'react-transition-group';
 import RestaurantList from '../../components/RestaurantList/RestaurantList';
-import Services from '../../components/Services/Services';
 import './Index.css';
 
 export class Index extends PureComponent {
